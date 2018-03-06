@@ -97,7 +97,7 @@ arma::mat rfvbm(int num,arma::vec bvec, arma::mat Mmat) {
   int n = bvec.n_elem;
   arma::mat returnmat   = arma::zeros(num,n);
   arma::rowvec cumprob = arma::cumsum(allpfvbm(bvec,Mmat));
-
+  //need to fix this, cant call system RNG if CRAN
   arma::vec random_nums = arma::randu(num);
   for(int i=0; i<num; i++){
     int j = as_scalar(find(cumprob > random_nums(i), 1, "first"));
