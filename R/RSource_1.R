@@ -55,7 +55,7 @@ rfvbm <- function(num,bvec,Mmat) {
   cumprob <- cumsum(allpfvbm(bvec,Mmat))
   returnmat <- matrix(NA,num,nn)
   for (ii in 1:num) {
-    returnmat[ii,] <- zeta[which(cumprob>=runif(1))[1],]
+    returnmat[ii,] <- zeta[which(cumprob>=stats::runif(1))[1],]
   }
   return(returnmat)
 }

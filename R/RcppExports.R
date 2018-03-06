@@ -5,3 +5,7 @@
 #' @useDynLib BoltzMM
 NULL
 
+mahalanobis_HD <- function(y, mu, sigma) {
+    .Call('_BoltzMM_mahalanobis_HD', PACKAGE = 'BoltzMM', y, mu, sigma)
+}
+
