@@ -3,9 +3,25 @@
 
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib BoltzMM
+#'
 NULL
 
-mahalanobis_HD <- function(y, mu, sigma) {
-    .Call('_BoltzMM_mahalanobis_HD', PACKAGE = 'BoltzMM', y, mu, sigma)
+bin_vec <- function(y, n) {
+    .Call('_BoltzMM_bin_vec', PACKAGE = 'BoltzMM', y, n)
+}
+
+#'@export
+pfvbm <- function(xval, bvec, Mmat) {
+    .Call('_BoltzMM_pfvbm', PACKAGE = 'BoltzMM', xval, bvec, Mmat)
+}
+
+#'@export
+allpfvbm <- function(bvec, Mmat) {
+    .Call('_BoltzMM_allpfvbm', PACKAGE = 'BoltzMM', bvec, Mmat)
+}
+
+#'@export
+rfvbm <- function(num, bvec, Mmat) {
+    .Call('_BoltzMM_rfvbm', PACKAGE = 'BoltzMM', num, bvec, Mmat)
 }
 

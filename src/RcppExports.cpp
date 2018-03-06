@@ -6,22 +6,62 @@
 
 using namespace Rcpp;
 
-// mahalanobis_HD
-double mahalanobis_HD(arma::rowvec y, arma::rowvec mu, arma::mat sigma);
-RcppExport SEXP _BoltzMM_mahalanobis_HD(SEXP ySEXP, SEXP muSEXP, SEXP sigmaSEXP) {
+// bin_vec
+arma::vec bin_vec(int y, int n);
+RcppExport SEXP _BoltzMM_bin_vec(SEXP ySEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::rowvec >::type y(ySEXP);
-    Rcpp::traits::input_parameter< arma::rowvec >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type sigma(sigmaSEXP);
-    rcpp_result_gen = Rcpp::wrap(mahalanobis_HD(y, mu, sigma));
+    Rcpp::traits::input_parameter< int >::type y(ySEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(bin_vec(y, n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// pfvbm
+double pfvbm(arma::vec xval, arma::vec bvec, arma::mat Mmat);
+RcppExport SEXP _BoltzMM_pfvbm(SEXP xvalSEXP, SEXP bvecSEXP, SEXP MmatSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type xval(xvalSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type bvec(bvecSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Mmat(MmatSEXP);
+    rcpp_result_gen = Rcpp::wrap(pfvbm(xval, bvec, Mmat));
+    return rcpp_result_gen;
+END_RCPP
+}
+// allpfvbm
+arma::rowvec allpfvbm(arma::vec bvec, arma::mat Mmat);
+RcppExport SEXP _BoltzMM_allpfvbm(SEXP bvecSEXP, SEXP MmatSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type bvec(bvecSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Mmat(MmatSEXP);
+    rcpp_result_gen = Rcpp::wrap(allpfvbm(bvec, Mmat));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rfvbm
+arma::mat rfvbm(int num, arma::vec bvec, arma::mat Mmat);
+RcppExport SEXP _BoltzMM_rfvbm(SEXP numSEXP, SEXP bvecSEXP, SEXP MmatSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type num(numSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type bvec(bvecSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Mmat(MmatSEXP);
+    rcpp_result_gen = Rcpp::wrap(rfvbm(num, bvec, Mmat));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_BoltzMM_mahalanobis_HD", (DL_FUNC) &_BoltzMM_mahalanobis_HD, 3},
+    {"_BoltzMM_bin_vec", (DL_FUNC) &_BoltzMM_bin_vec, 2},
+    {"_BoltzMM_pfvbm", (DL_FUNC) &_BoltzMM_pfvbm, 3},
+    {"_BoltzMM_allpfvbm", (DL_FUNC) &_BoltzMM_allpfvbm, 2},
+    {"_BoltzMM_rfvbm", (DL_FUNC) &_BoltzMM_rfvbm, 3},
     {NULL, NULL, 0}
 };
 

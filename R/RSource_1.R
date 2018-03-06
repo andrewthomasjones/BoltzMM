@@ -10,14 +10,17 @@
 # with bias bvec and relationship matrix Mmat.
 # Note that xval is a string of {-1,1}^n and Mmat is a symmetric matrix with zeros on the diag.
 # function with inputs: bvec, Mmat, xval
-pfvbm <- function(xval,bvec,Mmat) {
+#'@export
+pfvbm_R <- function(xval,bvec,Mmat) {
   nn <- length(bvec)
   zeta <- eval(parse(text=paste('expand.grid(',paste(rep('c(-1,1)',nn),collapse = ','),
                                 ',stringsAsFactors = F)',collapse ='')))
   zeta <- as.matrix(zeta)
   norm <- 0
   for (ii in 1:(2^nn)) {
+
     norm <- norm + exp(0.5*zeta[ii,]%*%Mmat%*%zeta[ii,]+sum(bvec*zeta[ii,]))
+
   }
   xval <- matrix(xval,1,nn)
   prob <- exp(0.5*xval%*%Mmat%*%t(xval)+sum(bvec*xval))
@@ -29,7 +32,8 @@ pfvbm <- function(xval,bvec,Mmat) {
 # with bias bvec and relationship matrix Mmat.
 # Order is as given by expand.grid(c(-1,1),c(-1,1),...).
 # function with inputs: bvec, Mmat
-allpfvbm <- function(bvec,Mmat) {
+#'@export
+allpfvbm_R <- function(bvec,Mmat) {
   nn <- length(bvec)
   zeta <- eval(parse(text=paste('expand.grid(',paste(rep('c(-1,1)',nn),collapse = ','),
                                 ',stringsAsFactors = F)',collapse ='')))
@@ -41,18 +45,19 @@ allpfvbm <- function(bvec,Mmat) {
     probvec[ii] <- prob
     norm <- norm + prob
   }
-  return(probvec/norm)
+  return(probvec/as.vector(norm))
 }
 
 #rfvbm -- Generate random data from fvbm model with bias bvec and relationship matrix Mmat.
 # num is the number of observations to be drawn.
 # function with inputs bvec, Mmat, num
-rfvbm <- function(num,bvec,Mmat) {
+#'@export
+rfvbm_R <- function(num,bvec,Mmat) {
   nn <- length(bvec)
   zeta <- eval(parse(text=paste('expand.grid(',paste(rep('c(-1,1)',nn),collapse = ','),
                                 ',stringsAsFactors = F)',collapse ='')))
   zeta <- as.matrix(zeta)
-  cumprob <- cumsum(allpfvbm(bvec,Mmat))
+  cumprob <- cumsum(allpfvbm_R(bvec,Mmat))
   returnmat <- matrix(NA,num,nn)
   for (ii in 1:num) {
     returnmat[ii,] <- zeta[which(cumprob>=stats::runif(1))[1],]
