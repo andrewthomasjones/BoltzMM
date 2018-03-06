@@ -88,7 +88,7 @@ fitfvbm <- function(data,bvec,Mmat,delta_crit=0.001) {
       DERIV <- 0
       for (ii in 1:N)
       {
-        DERIV <- DERIV + DATA[ii,jj] - tanh(MM[,jj]%*%DATA[ii,]+BB[jj,1])
+        DERIV <- DERIV + data[ii,jj] - tanh(MM[,jj]%*%data[ii,]+BB[jj,1])
       }
       BB[jj,1] <- BB[jj,1] + DERIV/N
     }
@@ -103,7 +103,7 @@ fitfvbm <- function(data,bvec,Mmat,delta_crit=0.001) {
           DERIV <- 0
           for (ii in 1:N)
           {
-            DERIV <- DERIV + 2*DATA[ii,jj]*DATA[ii,kk] - DATA[ii,kk]*tanh(MM[,jj]%*%DATA[ii,]+BB[jj,1]) - DATA[ii,jj]*tanh(MM[,kk]%*%DATA[ii,]+BB[kk,1])
+            DERIV <- DERIV + 2*data[ii,jj]*data[ii,kk] - data[ii,kk]*tanh(MM[,jj]%*%data[ii,]+BB[jj,1]) - data[ii,jj]*tanh(MM[,kk]%*%data[ii,]+BB[kk,1])
           }
           MM[jj,kk] <- MM[kk,jj] <- DERIV/(2*N) + MM[jj,kk]
         }
@@ -119,7 +119,7 @@ fitfvbm <- function(data,bvec,Mmat,delta_crit=0.001) {
   {
     for (jj in 1:D)
     {
-      LIKE <- LIKE + DATA[ii,jj]*MM[,jj]%*%DATA[ii,] + BB[jj,1]*DATA[ii,jj] - log(cosh(MM[,jj]%*%DATA[ii,]+BB[jj,1])) - log(2)
+      LIKE <- LIKE + data[ii,jj]*MM[,jj]%*%data[ii,] + BB[jj,1]*data[ii,jj] - log(cosh(MM[,jj]%*%data[ii,]+BB[jj,1])) - log(2)
     }
   }
 
