@@ -64,7 +64,7 @@ rfvbm_R <- function(num,bvec,Mmat) {
 # Takes input bvec, Mmat, data, delta_crit.
 # delta_crit a termination criterion based on the relative error of the distance between parameter iterates.
 #'@export
-fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
+fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001, max_it = 1000) {
 
   # New parameters transfer into old parameters
   N <- dim(data)[1]
@@ -75,7 +75,7 @@ fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
   old_par <- par <- c(BB,MM)
   itt<-0
 
-  while (delta > delta_crit)
+  while (delta > delta_crit & itt<max_it)
   {
     itt<-itt+1
     old_par <- par
@@ -90,7 +90,7 @@ fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
       BB[jj,1] <- BB[jj,1] + DERIV/N
     }
 
-    print(BB)
+
 
     for (jj in 1:D)
     {
@@ -117,7 +117,7 @@ fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
   {
     for (jj in 1:D)
     {
-      LIKE <- LIKE + data[ii,jj]*MM[,jj]%*%data[ii,] + BB[jj,1]*data[ii,jj] - log(cosh(MM[,jj]%*%data[ii,]+BB[jj,1])) - log(2)
+      LIKE <- LIKE + data[ii,jj]*MM[,jj]%*%data[ii,] + BB[jj,1]*data[ii,jj]  - log(cosh(MM[,jj]%*%data[ii,]+BB[jj,1])) - log(2)
     }
   }
 

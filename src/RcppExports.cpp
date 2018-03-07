@@ -57,8 +57,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // fitfvbm
-Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_crit);
-RcppExport SEXP _BoltzMM_fitfvbm(SEXP dataSEXP, SEXP bvecSEXP, SEXP MmatSEXP, SEXP delta_critSEXP) {
+Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_crit, int max_it);
+RcppExport SEXP _BoltzMM_fitfvbm(SEXP dataSEXP, SEXP bvecSEXP, SEXP MmatSEXP, SEXP delta_critSEXP, SEXP max_itSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -66,7 +66,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec >::type bvec(bvecSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type Mmat(MmatSEXP);
     Rcpp::traits::input_parameter< double >::type delta_crit(delta_critSEXP);
-    rcpp_result_gen = Rcpp::wrap(fitfvbm(data, bvec, Mmat, delta_crit));
+    Rcpp::traits::input_parameter< int >::type max_it(max_itSEXP);
+    rcpp_result_gen = Rcpp::wrap(fitfvbm(data, bvec, Mmat, delta_crit, max_it));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -76,7 +77,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_BoltzMM_pfvbm", (DL_FUNC) &_BoltzMM_pfvbm, 3},
     {"_BoltzMM_allpfvbm", (DL_FUNC) &_BoltzMM_allpfvbm, 2},
     {"_BoltzMM_rfvbm", (DL_FUNC) &_BoltzMM_rfvbm, 3},
-    {"_BoltzMM_fitfvbm", (DL_FUNC) &_BoltzMM_fitfvbm, 4},
+    {"_BoltzMM_fitfvbm", (DL_FUNC) &_BoltzMM_fitfvbm, 5},
     {NULL, NULL, 0}
 };
 

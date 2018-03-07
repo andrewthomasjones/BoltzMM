@@ -23,10 +23,21 @@ b<-BoltzMM::pfvbm_R(xval, bvec, mat)
 c<-colMeans(BoltzMM::rfvbm_R(num,bvec,mat))
 toc()
 
-data<-as.matrix(iris[,1:4])
+
 mat <- matrix(0,4,4)
 bvec <-rep(0,4)
+data <- rfvbm(1000,bvec,mat)
 
 
 x<-fitfvbm_R(data,bvec,mat)
 y<-fitfvbm(data,bvec,mat)
+
+x$Mmat
+y$Mmat
+
+t(x$bvec)
+y$bvec
+
+x$pll
+y$pll
+

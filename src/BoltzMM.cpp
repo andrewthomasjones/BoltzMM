@@ -115,7 +115,7 @@ arma::mat rfvbm(int num,arma::vec bvec, arma::mat Mmat) {
 // # delta_crit a termination criterion based on the relative error of the distance between parameter iterates.
 //'@export
 // [[Rcpp::export]]
-Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_crit = 0.001){
+Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_crit = 0.001, int max_it = 1000){
     //New parameters transfer into old parameters
     int N = data.n_rows;
     int D = bvec.n_elem;
@@ -130,7 +130,7 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
     double DERIV = 0.0;
     double LIKE = 0.0;
 
-    while (delta > delta_crit)
+    while (delta > delta_crit & itt<max_it)
     {
         itt++;
         old_par = par;
@@ -141,7 +141,7 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
 
             for(int i=0; i<N; i++)
             {
-                DERIV += std::tanh(arma::dot(MM.col(j),data.row(i))+bvec(j));
+                DERIV -= std::tanh(arma::dot(MM.col(j),data.row(i))+bvec(j));
             }
             bvec(j) +=  DERIV/N;
         }
