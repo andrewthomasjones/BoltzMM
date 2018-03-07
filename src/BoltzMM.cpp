@@ -9,7 +9,7 @@
 #include "RcppArmadillo.h"
 #include <bitset>
 #include <boost/dynamic_bitset.hpp>
-
+#include <cmath>
 
 Rcpp::NumericVector export_vec(arma::vec y)
 {
@@ -108,4 +108,75 @@ arma::mat rfvbm(int num,arma::vec bvec, arma::mat Mmat) {
   return(returnmat);
 }
 
+
+// #fitfvbm -- Fit fvbm with starting parameters bvec and Mmat, using the MM algorithm.
+// # Function returns estimated parameters and final pseudo-log-likelihood.
+// # Takes input bvec, Mmat, data, delta_crit.
+// # delta_crit a termination criterion based on the relative error of the distance between parameter iterates.
+//'@export
+// [[Rcpp::export]]
+Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_crit = 0.001){
+    //New parameters transfer into old parameters
+    int N = data.n_rows;
+    int D = bvec.n_elem;
+
+    //add dimension checks here
+
+    arma::mat MM = Mmat;
+    double delta = delta_crit+10.0;
+    arma::mat par  = arma::join_rows(bvec,MM);
+    arma::mat old_par = par;
+
+    double DERIV = 0.0;
+    double LIKE = 0.0;
+
+    while (delta > delta_crit)
+    {
+        old_par = par;
+
+        for(int j=0; j<D; j++)
+        {
+            DERIV = 0.0;
+            for(int i=0; i<N; i++)
+            {
+                DERIV += data(i,j) - std::tanh(arma::dot(MM.col(j),data.row(i))+bvec(j));
+            }
+            bvec(j) +=  DERIV/N;
+        }
+
+
+        for(int j=0; j<D; j++)
+        {
+            for(int k=(j+1); k<D; k++)
+            {
+                DERIV = 0.0;
+                for(int i=0; i<N; i++)
+                {
+                    DERIV += 2.0*data(i,j)*data(i,k) - data(i,k)*std::tanh(arma::dot(MM.col(j),data.row(i)+bvec(j))) - data(i,j)*std::tanh(arma::dot(MM.col(k),data.row(i)+bvec(k)));
+                }
+            MM(j,k) += DERIV/(2.0*N);
+            MM(k,j) = MM(j,k);
+            }
+        }
+        par = arma::join_rows(bvec,MM);
+        delta = std::sqrt(arma::accu(arma::pow((par-old_par),2.0)))/std::max(std::sqrt(arma::accu(arma::pow(old_par,2.0))),1.0);
+    }
+
+    LIKE = 0.0;
+    for(int i=0; i<N; i++)
+    {
+        for(int j=0; j<D; j++)
+        {
+            LIKE += data(i,j)*arma::dot(MM.col(j),data.row(i)) + bvec(j)*data(i,j) - std::log(std::cosh(arma::dot(MM.col(j),data.row(i))+bvec(j))) - std::log(2.0);
+        }
+    }
+
+    Rcpp::List retList = Rcpp::List::create(
+        Rcpp::Named("pll")= LIKE,
+        Rcpp::Named("bvec")= export_vec(bvec),
+        Rcpp::Named("Mmat")= MM
+    );
+
+    return(retList);
+}
 

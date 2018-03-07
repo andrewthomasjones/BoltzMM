@@ -1,6 +1,6 @@
 library(Matrix)
 
-k<-20
+k<-4
 num<-1000
 mat <- matrix(rnorm(k*k),k,k)
 mat<-forceSymmetric(mat)
@@ -9,7 +9,7 @@ diag(mat)<-0
 mat<-as.matrix(mat)
 
 xval <-rnorm(k)
-bvec <-rnorm(k)
+bvec <-abs(rnorm(k))
 
 tic()
 a<-BoltzMM::pfvbm(xval, bvec, mat)
@@ -22,3 +22,8 @@ a<-BoltzMM::allpfvbm_R(bvec, mat)
 b<-BoltzMM::pfvbm_R(xval, bvec, mat)
 c<-colMeans(BoltzMM::rfvbm_R(num,bvec,mat))
 toc()
+
+data<-as.matrix(iris[,1:4])
+
+fitfvbm_R(data,bvec,mat)
+fitfvbm(data,bvec,mat)

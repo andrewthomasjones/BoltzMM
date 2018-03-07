@@ -1,10 +1,4 @@
 
-# To do: 1. pfvbm, rfvbm
-# 2. Fit fvbm
-# 3. prbm, rrbm
-# 4. Fit rbm
-# 5. pbm, rbm
-# 6. Fit bm
 
 # pfvbm -- Generate probability of string xval occuring with a fvbm model
 # with bias bvec and relationship matrix Mmat.
@@ -69,7 +63,8 @@ rfvbm_R <- function(num,bvec,Mmat) {
 # Function returns estimated parameters and final pseudo-log-likelihood.
 # Takes input bvec, Mmat, data, delta_crit.
 # delta_crit a termination criterion based on the relative error of the distance between parameter iterates.
-fitfvbm <- function(data,bvec,Mmat,delta_crit=0.001) {
+#'@export
+fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
 
   # New parameters transfer into old parameters
   N <- dim(data)[1]

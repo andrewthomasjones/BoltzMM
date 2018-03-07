@@ -25,3 +25,8 @@ rfvbm <- function(num, bvec, Mmat) {
     .Call('_BoltzMM_rfvbm', PACKAGE = 'BoltzMM', num, bvec, Mmat)
 }
 
+#'@export
+fitfvbm <- function(data, bvec, Mmat, delta_crit = 0.001) {
+    .Call('_BoltzMM_fitfvbm', PACKAGE = 'BoltzMM', data, bvec, Mmat, delta_crit)
+}
+

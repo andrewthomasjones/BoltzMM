@@ -2,6 +2,8 @@
 
 export(allpfvbm)
 export(allpfvbm_R)
+export(fitfvbm)
+export(fitfvbm_R)
 export(pfvbm)
 export(pfvbm_R)
 export(rfvbm)
