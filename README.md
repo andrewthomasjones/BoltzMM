@@ -2,7 +2,7 @@
 Boltzmann Machines with MM Algorithms
 
 # To do:
-# ~~1. pfvbm, rfvbm ~~
+# ~~1. pfvbm, rfvbm~~
 # ~~2. Fit fvbm~~
 # 3. prbm, rrbm
 # 4. Fit rbm
