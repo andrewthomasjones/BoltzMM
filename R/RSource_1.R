@@ -88,6 +88,7 @@ fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
       BB[jj,1] <- BB[jj,1] + DERIV/N
     }
 
+    print(BB)
 
     for (jj in 1:D)
     {

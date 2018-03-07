@@ -9,7 +9,7 @@ diag(mat)<-0
 mat<-as.matrix(mat)
 
 xval <-rnorm(k)
-bvec <-abs(rnorm(k))
+bvec <-rnorm(k)
 
 tic()
 a<-BoltzMM::pfvbm(xval, bvec, mat)
@@ -24,6 +24,8 @@ c<-colMeans(BoltzMM::rfvbm_R(num,bvec,mat))
 toc()
 
 data<-as.matrix(iris[,1:4])
+mat <- matrix(0,4,4)
+bvec <-rep(0,k4)
 
 fitfvbm_R(data,bvec,mat)
 fitfvbm(data,bvec,mat)

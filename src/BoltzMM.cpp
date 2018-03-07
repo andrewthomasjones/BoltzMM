@@ -136,13 +136,15 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
 
         for(int j=0; j<D; j++)
         {
-            DERIV = 0.0;
+            DERIV = arma::sum(data.col(j));
+
             for(int i=0; i<N; i++)
             {
-                DERIV += data(i,j) - std::tanh(arma::dot(MM.col(j),data.row(i))+bvec(j));
+                DERIV += std::tanh(arma::dot(MM.col(j),data.row(i))+bvec(j));
             }
             bvec(j) +=  DERIV/N;
         }
+
 
 
         for(int j=0; j<D; j++)
