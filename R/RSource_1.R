@@ -73,9 +73,11 @@ fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
   BB <- matrix(bvec,D,1)
   delta <- Inf
   old_par <- par <- c(BB,MM)
+  itt<-0
 
   while (delta > delta_crit)
   {
+    itt<-itt+1
     old_par <- par
 
     for (jj in 1:D)
@@ -98,14 +100,14 @@ fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
           DERIV <- 0
           for (ii in 1:N)
           {
-            DERIV <- DERIV + 2*data[ii,jj]*data[ii,kk] - data[ii,kk]*tanh(MM[,jj]%*%data[ii,]+BB[jj,1]) - data[ii,jj]*tanh(MM[,kk]%*%data[ii,]+BB[kk,1])
+            DERIV <- DERIV + 2*data[ii,jj]*data[ii,kk]  - data[ii,kk]*tanh(MM[,jj]%*%data[ii,]+BB[jj,1]) - data[ii,jj]*tanh(MM[,kk]%*%data[ii,]+BB[kk,1])
           }
           MM[jj,kk] <- MM[kk,jj] <- DERIV/(2*N) + MM[jj,kk]
         }
       }
     }
-    par <- c(BB,MM)
 
+    par <- c(BB,MM)
     delta <- sqrt(sum((par-old_par)^2))/max(sqrt(sum(old_par)^2),1)
   }
 
@@ -118,5 +120,5 @@ fitfvbm_R <- function(data,bvec,Mmat,delta_crit=0.001) {
     }
   }
 
-  return(list(pll=LIKE,bvec=BB,Mmat=MM))
+  return(list(pll=LIKE,bvec=BB,Mmat=MM, itt=itt))
 }

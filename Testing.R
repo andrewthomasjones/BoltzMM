@@ -25,7 +25,7 @@ toc()
 
 data<-as.matrix(iris[,1:4])
 mat <- matrix(0,4,4)
-bvec <-rep(0,k4)
+bvec <-rep(0,4)
 
-fitfvbm_R(data,bvec,mat)
-fitfvbm(data,bvec,mat)
+x<-fitfvbm_R(data,bvec,mat)
+y<-fitfvbm(data,bvec,mat)
