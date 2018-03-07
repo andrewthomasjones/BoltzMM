@@ -64,7 +64,7 @@ double pfvbm(arma::vec xval, arma::vec bvec, arma::mat Mmat) {
 // # function with inputs: bvec, Mmat
 //'@export
 // [[Rcpp::export]]
-arma::rowvec allpfvbm( arma::vec bvec, arma::mat Mmat) {
+arma::rowvec allpfvbm(arma::vec bvec, arma::mat Mmat) {
     int n = bvec.n_elem;
     double norm = 0.0;
     int count = std::pow(2,n);
@@ -102,7 +102,7 @@ arma::mat rfvbm(int num, arma::vec bvec, arma::mat Mmat) {
       //need to fix this, cant call system RNG if CRAN
       arma::vec random_nums = arma::randu(num);
       for(int i=0; i<num; i++){
-        int j = as_scalar(find(cumprob > random_nums(i), 1, "first"));
+        int j = arma::as_scalar(find(cumprob > random_nums(i), 1, "first"));
         arma::vec zeta_j = bin_vec(j,n);
         returnmat.row(i) = zeta_j.t();
       }
@@ -129,12 +129,17 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
     }
 
     arma::mat MM = Mmat;
+    arma::mat dataj = data;
+    arma::mat datak = data;
+    arma::vec temp = arma::zeros(N);
     double delta = delta_crit+10.0;
     arma::mat par  = arma::join_rows(bvec,MM);
     arma::mat old_par = par;
 
     double DERIV = 0.0;
     double LIKE = 0.0;
+    double sumj = 0.0;
+    double sumk = 0.0;
 
     while (delta > delta_crit & itt<max_it)
     {
@@ -144,11 +149,8 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
         for(int j=0; j<D; j++)
         {
             DERIV = arma::sum(data.col(j));
-
-            for(int i=0; i<N; i++)
-            {
-                DERIV -= std::tanh(arma::dot(MM.col(j),data.row(i))+bvec(j));
-            }
+            dataj = data.each_row()%MM.col(j).t();
+            DERIV -= arma::as_scalar(arma::sum(arma::tanh(sum(dataj,1) + bvec(j))));
             bvec(j) +=  DERIV/N;
         }
 
@@ -158,13 +160,18 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
         {
             for(int k=(j+1); k<D; k++)
             {
-                DERIV = 0.0;
-                for(int i=0; i<N; i++)
-                {
-                    DERIV += 2.0*data(i,j)*data(i,k) - data(i,k)*std::tanh(arma::dot(MM.col(j),data.row(i))+bvec(j)) - data(i,j)*std::tanh(arma::dot(MM.col(k),data.row(i))+bvec(k));
-                }
-            MM(j,k) += DERIV/(2.0*N);
-            MM(k,j) = MM(j,k);
+                DERIV = 2.0*arma::dot(data.col(j),data.col(k));
+
+                dataj = data.each_row()%MM.col(j).t();
+                datak = data.each_row()%MM.col(k).t();
+
+                sumk = arma::as_scalar(arma::dot(data.col(k),(arma::tanh(sum(dataj,1) + bvec(j)))));
+                sumj = arma::as_scalar(arma::dot(data.col(j),(arma::tanh(sum(datak,1) + bvec(k)))));
+
+                DERIV-=(sumk+sumj);
+
+                MM(j,k) += DERIV/(2.0*N);
+                MM(k,j) = MM(j,k);
             }
         }
 
