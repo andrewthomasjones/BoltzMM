@@ -24,7 +24,7 @@ c<-colMeans(BoltzMM::rfvbm_R(num,bvec,mat))
 toc()
 
 
-mat <- matrix(0,4,4)
+mat <- matrix(0,3,4)
 bvec <-rep(0,4)
 data <- rfvbm(1000,bvec,mat)
 

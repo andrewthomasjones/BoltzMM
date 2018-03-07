@@ -6,10 +6,6 @@
 #'
 NULL
 
-bin_vec <- function(y, n) {
-    .Call('_BoltzMM_bin_vec', PACKAGE = 'BoltzMM', y, n)
-}
-
 #'@export
 pfvbm <- function(xval, bvec, Mmat) {
     .Call('_BoltzMM_pfvbm', PACKAGE = 'BoltzMM', xval, bvec, Mmat)

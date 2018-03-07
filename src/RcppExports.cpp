@@ -6,18 +6,6 @@
 
 using namespace Rcpp;
 
-// bin_vec
-arma::vec bin_vec(int y, int n);
-RcppExport SEXP _BoltzMM_bin_vec(SEXP ySEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type y(ySEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(bin_vec(y, n));
-    return rcpp_result_gen;
-END_RCPP
-}
 // pfvbm
 double pfvbm(arma::vec xval, arma::vec bvec, arma::mat Mmat);
 RcppExport SEXP _BoltzMM_pfvbm(SEXP xvalSEXP, SEXP bvecSEXP, SEXP MmatSEXP) {
@@ -73,7 +61,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_BoltzMM_bin_vec", (DL_FUNC) &_BoltzMM_bin_vec, 2},
     {"_BoltzMM_pfvbm", (DL_FUNC) &_BoltzMM_pfvbm, 3},
     {"_BoltzMM_allpfvbm", (DL_FUNC) &_BoltzMM_allpfvbm, 2},
     {"_BoltzMM_rfvbm", (DL_FUNC) &_BoltzMM_rfvbm, 3},
