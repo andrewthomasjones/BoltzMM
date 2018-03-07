@@ -3,7 +3,6 @@
 
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib BoltzMM
-#'
 NULL
 
 #'@export

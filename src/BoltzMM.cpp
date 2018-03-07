@@ -5,11 +5,11 @@
 
 //' @importFrom Rcpp sourceCpp
 //' @useDynLib BoltzMM
-//'
+
 #include "RcppArmadillo.h"
 #include <bitset>
 #include <boost/dynamic_bitset.hpp>
-#include <cmath>
+
 
 //for returning a vector within a list
 Rcpp::NumericVector export_vec(arma::vec y)
