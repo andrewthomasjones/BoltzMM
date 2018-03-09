@@ -128,6 +128,11 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
         return(Rcpp::List::create());
     }
 
+    if(arma::any(arma::any(arma::abs(data)!=1))){
+      Rcpp::Rcerr << "Input data must consist of only 1 or -1 values.";
+      return(Rcpp::List::create());
+    }
+
     arma::mat MM = Mmat;
     arma::mat dataj = data;
     arma::mat datak = data;
