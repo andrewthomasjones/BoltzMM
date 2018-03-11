@@ -208,33 +208,32 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
 //'@export
 //[[Rcpp::export]]
 Rcpp::List fvbmpartiald(arma::mat data, Rcpp::List model){
-  int N = data.n_rows;
-  int D = data.n_cols;
+    int N = data.n_rows;
+    int D = data.n_cols;
 
-  arma::mat Mmat=model(2);
-  arma::vec bvec=model(1);
+    arma::mat Mmat=model(2);
+    arma::vec bvec=model(1);
 
 
     arma::mat partiald = arma::zeros(D,D+1);
 
     for(int j = 0; j<D; j++) {
-        // potenial speed up here, maybe doesnt matter much
-        for(int i = 0; i<N; i++ ){
-            double inter = data(i,j)-std::tanh(arma::dot(data.row(i),Mmat.row(j)) +bvec(j) );
-            partiald(j,0) += inter;
-            partiald(j,arma::span(1,D)) += data.row(i)*inter;
-        }
+
+      arma::mat dataj = data.each_row()%Mmat.col(j).t();
+      arma::vec tempj = arma::tanh(sum(dataj,1) + bvec(j));
+      double sumj = arma::as_scalar(arma::sum(tempj));
+      partiald(j,0) = arma::sum(data.col(j)) - sumj;
+      arma::mat temp2 = data.col(j)-tempj;
+      partiald(j,arma::span(1,D)) = arma::sum(temp2.t()*data,0);
 
     }
 
     arma::vec bvecpartial = arma::zeros(D);
     arma::mat Mmatpartial = arma::zeros(D,D);
 
-    for(int j = 0; j<D; j++) {
-        bvecpartial(j) = partiald(j,0);
-        Mmatpartial.row(j) = partiald(j,arma::span(1,D));
-    }
 
+    bvecpartial = partiald.col(0);
+    Mmatpartial = partiald(arma::span(0,D-1),arma::span(1,D));
     Mmatpartial = Mmatpartial + Mmatpartial.t();
     Mmatpartial.diag().zeros();
 
@@ -259,16 +258,18 @@ arma::mat fvbmHess(arma::mat data, Rcpp::List model){
     arma::mat MM=model(2);
     arma::vec bvec=model(3);
 
+    arma::vec one = arma::ones(N);
     arma::cube HessComps = arma::zeros(D, D+1, D+1);
 
-
+    arma::mat x_bar = join_horiz(one,data).t();
+    arma::mat x_bar2 = N * x_bar*x_bar.t();
+    double recip_sum = 0.0;
 
     for(int j =0; j< D; j++) {
-//       for (ii in 1:N) {
-//         x_bar <- as.matrix(c(1,data[ii,]),D+1,1)
-//         HessComps[[jj]] <- HessComps[[jj]] - x_bar%*%t(x_bar)/
-//           cosh(sum(Mmat[jj,]*data[ii,])+bvec[jj])^2
-//       }
+      arma::mat dataj = data.each_row()%MM.col(j).t();
+      arma::vec tempj = arma::pow(arma::cosh(sum(dataj,1) + bvec(j)), -2.0);
+      recip_sum = arma::sum(tempj);
+      HessComps.slice(j) = x_bar2 * recip_sum;
     }
 
     arma::mat Index = arma::zeros(D,D);
@@ -277,8 +278,6 @@ arma::mat fvbmHess(arma::mat data, Rcpp::List model){
 
     arma::mat LL = trimatl(Index, -1);
     //LL =  1:(D*(D-1)/2)
-
-
 
     Index = Index + Index.t();
 
@@ -310,14 +309,13 @@ arma::mat fvbmcov(arma::mat data, Rcpp::List model){
     arma::mat I_1 = -(1.0/N)*fvbmHess(data,model);
     arma::mat I_2 = arma::zeros(hessDim,hessDim);
 
-    //remove N loop?
+    //remove N loop? need to vectorise fvbmpartiald
     for(int i =0; i< N; i++) {
       Rcpp::List Partial_res = fvbmpartiald(data.row(i),model);
-      arma::mat Extract = arma::zeros();
+      arma::mat Extract = arma::zeros(hessDim,1);
 
-        //matrix(c(Partial_res$bvecpartial,
-                          //Partial_res$Mmatpartial[lower.tri(Partial_res$Mmatpartial)]),
-                          //D+D*(D-1)/2,1)
+        //matrix(c(Partial_res(1),
+                          //Partial_res(2)[lower.tri(Partial_res$Mmatpartial)])
       I_2 += Extract*Extract.t();
      }
 

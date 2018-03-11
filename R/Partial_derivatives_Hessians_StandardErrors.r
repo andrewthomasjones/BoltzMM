@@ -18,8 +18,7 @@ fvbmpartiald_R <- function(data, model)
     for (ii in 1:N) {
       Holder <- data[ii,]
       inter <- Holder[jj]-tanh(sum(Holder*Mmat[,jj])+bvec[jj])
-      partiald[[jj]] <- partiald[[jj]] + c(inter,
-                                           Holder*inter)
+      partiald[[jj]] <- partiald[[jj]] + c(inter,Holder*inter)
     }
   }
   bvecpartial <- rep(0,D)
