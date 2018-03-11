@@ -203,3 +203,56 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
     return(retList);
 }
 
+//### Computes the partial derivatives of an fvbm's model parameters
+//# Takes input data (a data matrix) and model (an object generated from fitfvbm)
+//'@export
+Rcpp::List fvbmpartiald(arma::mat data, Rcpp::List model){
+  int N = data.n_rows;
+  int D = data.n_cols;
+
+  arma::mat MM=data;
+
+  arma::vec bvec=model(2);
+
+
+  Rcpp::List retList = Rcpp::List::create(
+    Rcpp::Named("bvec")= export_vec(bvec),
+    Rcpp::Named("Mmat")= MM
+  );
+
+  return(retList);
+
+}
+
+//
+// ### Computes the Hessian of an fvbm's model parameters
+// # Takes input data (a data matrix) and model (an object generated from fitfvbm)
+//'@export
+arma::mat fvbmHess(arma::mat data, Rcpp::List model){
+  int N = data.n_rows;
+  int D = data.n_cols;
+
+  arma::mat MM=model(1);
+
+
+  return(MM);
+
+}
+
+
+
+// Covariance Matrix
+// Takes input data (a data matrix) and model (an object generated from fitfvbm)
+//'@export
+arma::mat fvbmcov(arma::mat data, Rcpp::List model){
+  int N = data.n_rows;
+  int D = data.n_cols;
+
+  arma::mat MM=model(1);
+
+
+  return(MM);
+}
+
+
+

@@ -6,6 +6,15 @@
 NULL
 
 #'@export
+NULL
+
+#'@export
+NULL
+
+#'@export
+NULL
+
+#'@export
 pfvbm <- function(xval, bvec, Mmat) {
     .Call('_BoltzMM_pfvbm', PACKAGE = 'BoltzMM', xval, bvec, Mmat)
 }
