@@ -40,6 +40,7 @@ y$pll
 ### Test
 DATA <- rfvbm(1000,c(0,1,0),matrix(c(0,1,1,1,0,1,1,1,0),3,3))
 FIT <- fitfvbm(DATA,c(0,1,0),matrix(c(0,1,1,1,0,1,1,1,0),3,3))
+fvbmpartiald_R(DATA,FIT)
 fvbmpartiald(DATA,FIT)
 
 # Test

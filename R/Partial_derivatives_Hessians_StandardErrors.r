@@ -1,7 +1,7 @@
 ### Computes the partial derivatives of an fvbm's model parameters
 # Takes input data (a data matrix) and model (an object generated from fitfvbm)
 #'@export
-fvbmpartiald <- function(data, model)
+fvbmpartiald_R <- function(data, model)
 {
   bvec <- model[[2]]
   Mmat <- model[[3]]

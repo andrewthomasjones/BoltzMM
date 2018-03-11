@@ -6,15 +6,6 @@
 NULL
 
 #'@export
-NULL
-
-#'@export
-NULL
-
-#'@export
-NULL
-
-#'@export
 pfvbm <- function(xval, bvec, Mmat) {
     .Call('_BoltzMM_pfvbm', PACKAGE = 'BoltzMM', xval, bvec, Mmat)
 }
@@ -32,5 +23,20 @@ rfvbm <- function(num, bvec, Mmat) {
 #'@export
 fitfvbm <- function(data, bvec, Mmat, delta_crit = 0.001, max_it = 1000L) {
     .Call('_BoltzMM_fitfvbm', PACKAGE = 'BoltzMM', data, bvec, Mmat, delta_crit, max_it)
+}
+
+#'@export
+fvbmpartiald <- function(data, model) {
+    .Call('_BoltzMM_fvbmpartiald', PACKAGE = 'BoltzMM', data, model)
+}
+
+#'@export
+fvbmHess <- function(data, model) {
+    .Call('_BoltzMM_fvbmHess', PACKAGE = 'BoltzMM', data, model)
+}
+
+#'@export
+fvbmcov <- function(data, model) {
+    .Call('_BoltzMM_fvbmcov', PACKAGE = 'BoltzMM', data, model)
 }
 

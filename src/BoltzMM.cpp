@@ -206,21 +206,44 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
 //### Computes the partial derivatives of an fvbm's model parameters
 //# Takes input data (a data matrix) and model (an object generated from fitfvbm)
 //'@export
+//[[Rcpp::export]]
 Rcpp::List fvbmpartiald(arma::mat data, Rcpp::List model){
   int N = data.n_rows;
   int D = data.n_cols;
 
-  arma::mat MM=data;
+  arma::mat Mmat=model(2);
+  arma::vec bvec=model(1);
 
-  arma::vec bvec=model(2);
 
+    arma::mat partiald = arma::zeros(D,D+1);
 
-  Rcpp::List retList = Rcpp::List::create(
-    Rcpp::Named("bvec")= export_vec(bvec),
-    Rcpp::Named("Mmat")= MM
-  );
+    for(int j = 0; j<D; j++) {
+        // potenial speed up here, maybe doesnt matter much
+        for(int i = 0; i<N; i++ ){
+            double inter = data(i,j)-std::tanh(arma::dot(data.row(i),Mmat.row(j)) +bvec(j) );
+            partiald(j,0) += inter;
+            partiald(j,arma::span(1,D)) += data.row(i)*inter;
+        }
 
-  return(retList);
+    }
+
+    arma::vec bvecpartial = arma::zeros(D);
+    arma::mat Mmatpartial = arma::zeros(D,D);
+
+    for(int j = 0; j<D; j++) {
+        bvecpartial(j) = partiald(j,0);
+        Mmatpartial.row(j) = partiald(j,arma::span(1,D));
+    }
+
+    Mmatpartial = Mmatpartial + Mmatpartial.t();
+    Mmatpartial.diag().zeros();
+
+    Rcpp::List retList = Rcpp::List::create(
+        Rcpp::Named("bvec")= export_vec(bvecpartial),
+        Rcpp::Named("Mmat")= Mmatpartial
+    );
+
+    return(retList);
 
 }
 
@@ -228,14 +251,46 @@ Rcpp::List fvbmpartiald(arma::mat data, Rcpp::List model){
 // ### Computes the Hessian of an fvbm's model parameters
 // # Takes input data (a data matrix) and model (an object generated from fitfvbm)
 //'@export
+//[[Rcpp::export]]
 arma::mat fvbmHess(arma::mat data, Rcpp::List model){
-  int N = data.n_rows;
-  int D = data.n_cols;
+    int N = data.n_rows;
+    int D = data.n_cols;
 
-  arma::mat MM=model(1);
+    arma::mat MM=model(2);
+    arma::vec bvec=model(3);
+
+    arma::cube HessComps = arma::zeros(D, D+1, D+1);
 
 
-  return(MM);
+
+    for(int j =0; j< D; j++) {
+//       for (ii in 1:N) {
+//         x_bar <- as.matrix(c(1,data[ii,]),D+1,1)
+//         HessComps[[jj]] <- HessComps[[jj]] - x_bar%*%t(x_bar)/
+//           cosh(sum(Mmat[jj,]*data[ii,])+bvec[jj])^2
+//       }
+    }
+
+    arma::mat Index = arma::zeros(D,D);
+    int hessDim = D+D*(D-1)/2;
+    arma::mat BigHess = arma::zeros(hessDim,hessDim);
+
+    arma::mat LL = trimatl(Index, -1);
+    //LL =  1:(D*(D-1)/2)
+
+
+
+    Index = Index + Index.t();
+
+
+    for(int j =0; j< D; j++) {
+        // WHICH <- which(Index[lower.tri(Index)]%in%Index[jj,])
+        // NonZero <- HessComps[[jj]][-c(jj+1),]
+        // NonZero <- NonZero[,-c(jj+1)]
+        // BigHess[c(jj,D+WHICH),c(jj,D+WHICH)] <- BigHess[c(jj,D+WHICH),c(jj,D+WHICH)] + NonZero
+    }
+
+    return(BigHess);
 
 }
 
@@ -244,15 +299,33 @@ arma::mat fvbmHess(arma::mat data, Rcpp::List model){
 // Covariance Matrix
 // Takes input data (a data matrix) and model (an object generated from fitfvbm)
 //'@export
+//[[Rcpp::export]]
 arma::mat fvbmcov(arma::mat data, Rcpp::List model){
-  int N = data.n_rows;
-  int D = data.n_cols;
+    int N = data.n_rows;
+    int D = data.n_cols;
 
-  arma::mat MM=model(1);
+    arma::mat Mmat=model(2);
+    int hessDim = D+D*(D-1)/2;
 
+    arma::mat I_1 = -(1.0/N)*fvbmHess(data,model);
+    arma::mat I_2 = arma::zeros(hessDim,hessDim);
 
-  return(MM);
+    //remove N loop?
+    for(int i =0; i< N; i++) {
+      Rcpp::List Partial_res = fvbmpartiald(data.row(i),model);
+      arma::mat Extract = arma::zeros();
+
+        //matrix(c(Partial_res$bvecpartial,
+                          //Partial_res$Mmatpartial[lower.tri(Partial_res$Mmatpartial)]),
+                          //D+D*(D-1)/2,1)
+      I_2 += Extract*Extract.t();
+     }
+
+    I_2 = (1.0/N)*I_2;
+    arma::mat I_1_s = arma::inv(I_1);
+    arma::mat Covar = I_1_s*I_2*I_1_s;
+
+    return(Covar);
 }
-
 
 
