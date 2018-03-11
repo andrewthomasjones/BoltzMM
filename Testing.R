@@ -40,13 +40,18 @@ y$pll
 ### Test
 DATA <- rfvbm(1000,c(0,1,0),matrix(c(0,1,1,1,0,1,1,1,0),3,3))
 FIT <- fitfvbm(DATA,c(0,1,0),matrix(c(0,1,1,1,0,1,1,1,0),3,3))
+tic()
 fvbmpartiald_R(DATA,FIT)
+toc()
+tic()
 fvbmpartiald(DATA,FIT)
+toc()
 
 # Test
-DATA <- rfvbm(10000,c(2,4,5),matrix(0.5,3,3)+diag(-0.5,3))
+DATA <- rfvbm(100,c(2,4,5),matrix(0.5,3,3)+diag(-0.5,3))
 FIT <- fitfvbm(DATA,c(2,4,5),matrix(0.5,3,3)+diag(-0.5,3))
-COV <- fvbmcov(DATA,FIT)
+COV <- fvbmcov_R(DATA,FIT)
+fvbmcov(DATA,FIT)
 COV
 
 

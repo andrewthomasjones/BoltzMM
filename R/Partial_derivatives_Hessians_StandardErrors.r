@@ -18,8 +18,7 @@ fvbmpartiald_R <- function(data, model)
     for (ii in 1:N) {
       Holder <- data[ii,]
       inter <- Holder[jj]-tanh(sum(Holder*Mmat[,jj])+bvec[jj])
-      partiald[[jj]] <- partiald[[jj]] + c(inter,
-                                           Holder*inter)
+      partiald[[jj]] <- partiald[[jj]] + c(inter,Holder*inter)
     }
   }
   bvecpartial <- rep(0,D)
@@ -82,12 +81,12 @@ fvbmcov_R <- function(data,model) {
 
   D <- dim(data)[2]
 
-  I_1 <- -(1/N)*fvbmHess(data,model)
+  I_1 <- -(1/N)*fvbmHess_R(data,model)
 
   I_2 <- matrix(0,D+D*(D-1)/2,D+D*(D-1)/2)
   for (ii in 1:N) {
     Single <- matrix(data[ii,],1,D)
-    Partial_res <- fvbmpartiald(Single,model)
+    Partial_res <- fvbmpartiald_R(Single,model)
     Extract <- matrix(c(Partial_res$bvecpartial,
                                      Partial_res$Mmatpartial[lower.tri(Partial_res$Mmatpartial)]),
                       D+D*(D-1)/2,1)
@@ -95,7 +94,7 @@ fvbmcov_R <- function(data,model) {
   }
   I_2 <- (1/N)*I_2
 
-  Covar <- solve(I_1)%*%I_2%*%solve(I_1)
+  Covar <- pracma::pinv(I_1)%*%I_2%*%pracma::pinv(I_1)
   return(Covar)
 }
 
