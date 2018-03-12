@@ -31,12 +31,7 @@ fvbmpartiald <- function(data, model) {
 }
 
 #'@export
-fvbmHess <- function(data, model) {
-    .Call('_BoltzMM_fvbmHess', PACKAGE = 'BoltzMM', data, model)
-}
-
-#'@export
-fvbmcov <- function(data, model) {
-    .Call('_BoltzMM_fvbmcov', PACKAGE = 'BoltzMM', data, model)
+fvbmcov <- function(data, model, fvbmHess) {
+    .Call('_BoltzMM_fvbmcov', PACKAGE = 'BoltzMM', data, model, fvbmHess)
 }
 

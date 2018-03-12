@@ -46,12 +46,10 @@ toc()
 tic()
 fvbmpartiald(DATA,FIT)
 toc()
-
+library(tictoc)
 # Test
 DATA <- rfvbm(100,c(2,4,5),matrix(0.5,3,3)+diag(-0.5,3))
 FIT <- fitfvbm(DATA,c(2,4,5),matrix(0.5,3,3)+diag(-0.5,3))
-COV <- fvbmcov_R(DATA,FIT)
-fvbmcov(DATA,FIT)
-COV
+COV2<-fvbmcov(DATA,FIT,fvbmHess)
 
 

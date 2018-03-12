@@ -71,27 +71,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// fvbmHess
-arma::mat fvbmHess(arma::mat data, Rcpp::List model);
-RcppExport SEXP _BoltzMM_fvbmHess(SEXP dataSEXP, SEXP modelSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type data(dataSEXP);
-    Rcpp::traits::input_parameter< Rcpp::List >::type model(modelSEXP);
-    rcpp_result_gen = Rcpp::wrap(fvbmHess(data, model));
-    return rcpp_result_gen;
-END_RCPP
-}
 // fvbmcov
-arma::mat fvbmcov(arma::mat data, Rcpp::List model);
-RcppExport SEXP _BoltzMM_fvbmcov(SEXP dataSEXP, SEXP modelSEXP) {
+arma::mat fvbmcov(arma::mat data, Rcpp::List model, Rcpp::Function fvbmHess);
+RcppExport SEXP _BoltzMM_fvbmcov(SEXP dataSEXP, SEXP modelSEXP, SEXP fvbmHessSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type data(dataSEXP);
     Rcpp::traits::input_parameter< Rcpp::List >::type model(modelSEXP);
-    rcpp_result_gen = Rcpp::wrap(fvbmcov(data, model));
+    Rcpp::traits::input_parameter< Rcpp::Function >::type fvbmHess(fvbmHessSEXP);
+    rcpp_result_gen = Rcpp::wrap(fvbmcov(data, model, fvbmHess));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -102,8 +91,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_BoltzMM_rfvbm", (DL_FUNC) &_BoltzMM_rfvbm, 3},
     {"_BoltzMM_fitfvbm", (DL_FUNC) &_BoltzMM_fitfvbm, 5},
     {"_BoltzMM_fvbmpartiald", (DL_FUNC) &_BoltzMM_fvbmpartiald, 2},
-    {"_BoltzMM_fvbmHess", (DL_FUNC) &_BoltzMM_fvbmHess, 2},
-    {"_BoltzMM_fvbmcov", (DL_FUNC) &_BoltzMM_fvbmcov, 2},
+    {"_BoltzMM_fvbmcov", (DL_FUNC) &_BoltzMM_fvbmcov, 3},
     {NULL, NULL, 0}
 };
 
