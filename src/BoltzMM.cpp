@@ -208,7 +208,7 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
 //'@export
 //[[Rcpp::export]]
 Rcpp::List fvbmpartiald(arma::mat data, Rcpp::List model){
-    int N = data.n_rows;
+    //int N = data.n_rows;
     int D = data.n_cols;
 
     arma::mat Mmat=Rcpp::as<arma::mat>(model(2));
