@@ -20,7 +20,7 @@ NULL
 #'pfvbm(xval,bvec,Mmat)
 #'@export
 pfvbm <- function(xval, bvec, Mmat) {
-  .Call('_BoltzMM_pfvbm', PACKAGE = 'BoltzMM', xval, bvec, Mmat)
+    .Call('_BoltzMM_pfvbm', PACKAGE = 'BoltzMM', xval, bvec, Mmat)
 }
 
 #'Probability mass function of a fully-visible Boltzmann machine evaluated for all possible vectors.
@@ -31,12 +31,12 @@ pfvbm <- function(xval, bvec, Mmat) {
 #'@references H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
 #'@author Andrew T. Jones and Hien D. Nguyen
 #'@examples # Compute the probability of every length n=3 binary spin vector under bvec and Mmat.
-#'#'bvec <- c(0,0.5,0.25)
+#'//'bvec <- c(0,0.5,0.25)
 #'Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
 #'allpfvbm(bvec,Mmat)
 #'@export
 allpfvbm <- function(bvec, Mmat) {
-  .Call('_BoltzMM_allpfvbm', PACKAGE = 'BoltzMM', bvec, Mmat)
+    .Call('_BoltzMM_allpfvbm', PACKAGE = 'BoltzMM', bvec, Mmat)
 }
 
 #'Random data generation from a fully-visible Boltzmann machine.
@@ -55,7 +55,7 @@ allpfvbm <- function(bvec, Mmat) {
 #'rfvbm(num,bvec,Mmat)
 #'@export
 rfvbm <- function(num, bvec, Mmat) {
-  .Call('_BoltzMM_rfvbm', PACKAGE = 'BoltzMM', num, bvec, Mmat)
+    .Call('_BoltzMM_rfvbm', PACKAGE = 'BoltzMM', num, bvec, Mmat)
 }
 
 #'Maximum pseudolikelihood estimation of a fully-visible Boltzmann machine.
@@ -77,7 +77,7 @@ rfvbm <- function(num, bvec, Mmat) {
 #'fitfvbm(data,bvec,Mmat)
 #'@export
 fitfvbm <- function(data, bvec, Mmat, delta_crit = 0.001, max_it = 1000L) {
-  .Call('_BoltzMM_fitfvbm', PACKAGE = 'BoltzMM', data, bvec, Mmat, delta_crit, max_it)
+    .Call('_BoltzMM_fitfvbm', PACKAGE = 'BoltzMM', data, bvec, Mmat, delta_crit, max_it)
 }
 
 #'Partial derivatives of the log-pseudolikelihood function for a fitted fully-visible Boltzmann machine.
@@ -98,7 +98,7 @@ fitfvbm <- function(data, bvec, Mmat, delta_crit = 0.001, max_it = 1000L) {
 #'fvbmpartiald(data,model)
 #'@export
 fvbmpartiald <- function(data, model) {
-  .Call('_BoltzMM_fvbmpartiald', PACKAGE = 'BoltzMM', data, model)
+    .Call('_BoltzMM_fvbmpartiald', PACKAGE = 'BoltzMM', data, model)
 }
 
 #'Sandwich estimator of the covariance matrix for a fitted fully-visible Boltzmann machine.
@@ -120,6 +120,6 @@ fvbmpartiald <- function(data, model) {
 #'fvbmcov(data,model,fvbmHess)
 #'@export
 fvbmcov <- function(data, model, fvbmHess) {
-  .Call('_BoltzMM_fvbmcov', PACKAGE = 'BoltzMM', data, model, fvbmHess)
+    .Call('_BoltzMM_fvbmcov', PACKAGE = 'BoltzMM', data, model, fvbmHess)
 }
 
