@@ -2,13 +2,15 @@
 // [[Rcpp::depends(BH)]]
 // [[Rcpp::plugins(cpp11)]]
 
-
 //' @importFrom Rcpp sourceCpp
 //' @useDynLib BoltzMM
 
 #include "RcppArmadillo.h"
-#include <boost/dynamic_bitset.hpp>
 
+#define NDEBUG
+#define BOOST_DISABLE_ASSERTS
+#include <boost/assert.hpp>
+#include <boost/dynamic_bitset.hpp>
 
 //for returning a vector within a list
 Rcpp::NumericVector export_vec(arma::vec y)
