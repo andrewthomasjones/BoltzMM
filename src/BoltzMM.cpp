@@ -76,7 +76,7 @@ double pfvbm(arma::vec xval, arma::vec bvec, arma::mat Mmat) {
 //'@references H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
 //'@author Andrew T. Jones and Hien D. Nguyen
 //'@examples # Compute the probability of every length n=3 binary spin vector under bvec and Mmat.
-//'//'bvec <- c(0,0.5,0.25)
+//'bvec <- c(0,0.5,0.25)
 //'Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
 //'allpfvbm(bvec,Mmat)
 //'@export
