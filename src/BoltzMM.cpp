@@ -7,7 +7,6 @@
 //' @useDynLib BoltzMM
 
 #include "RcppArmadillo.h"
-#include <bitset>
 #include <boost/dynamic_bitset.hpp>
 
 
