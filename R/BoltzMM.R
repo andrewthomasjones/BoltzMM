@@ -1,0 +1,15 @@
+#'BoltzMM: A package for probability computation, data generation, and model estimation of fully-visible Boltzmann machines.
+#'
+#'The BoltzMM package allows for computation of probability mass functions of fully-visible Boltzmann machines via \code{pfvbm} and \code{allpfvbm}.
+#'Random data can be generated using \code{rfvbm}. Maximum pseudolikelihood estimation of parameters via the MM algorithm can be conducted using \code{fitfvbm}.
+#'Computation of partial derivatives and Hessians can be performed via \code{fvbmpartiald} and \code{fvbmHessian}.
+#'Covariance estimation and normal standard errors can be computed using \code{fvbmcov} and \code{fvbmstderr}.
+#'
+#'@author Andrew T. Jones and Hien D. Nguyen
+#'@references H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
+#'
+#' H.D. Nguyen and I.A. Wood (2016), A block successive lower-bound maximization algorithm for the maximum pseudolikelihood estimation of fully visible Boltzmann machines, Neural Computation, vol 28, pp. 485-492.
+#'
+#'@docType package
+#'@name BoltzMM
+NULL
