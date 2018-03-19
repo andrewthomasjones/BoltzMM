@@ -12,7 +12,7 @@ allpfvbm(bvec, Mmat)
 \item{Mmat}{Symmetric n by n matrix, with zeros along the diagonal, containing the interaction parameters.}
 }
 \value{
-A vector of the probabilities of all 2^n binary spin vectors undering a fully-visible Boltzmann machine with bias vector \code{bvec} and interaction matrix \code{Mmat}. Probabilities are reported in ascending order of the binary strings; i.e for n=2 the reporting order is (-1,1), (-1,1), (1,-1), and (1,1).
+A vector of the probabilities of all 2^n binary spin vectors under a fully-visible Boltzmann machine with bias vector \code{bvec} and interaction matrix \code{Mmat}. Probabilities are reported in ascending order of the binary strings; i.e for n=2 the reporting order is (-1,1), (-1,1), (1,-1), and (1,1).
 }
 \description{
 Compute the probability of all 2^n strings of n>1 binary spin variables (i.e. each element is -1 or 1) arising from a fully-visible Boltzmann machine with some specified bias vector and interaction matrix.

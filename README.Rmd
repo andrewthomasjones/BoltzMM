@@ -1,0 +1,55 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# BoltzMM
+
+The BoltzMM package allows for computation of probability mass functions of fully-visible Boltzmann machines via \code{pfvbm} and \code{allpfvbm}.
+Random data can be generated using \code{rfvbm}. Maximum pseudolikelihood estimation of parameters via the MM algorithm can be conducted using \code{fitfvbm}.
+Computation of partial derivatives and Hessians can be performed via \code{fvbmpartiald} and \code{fvbmHessian}.
+Covariance estimation and normal standard errors can be computed using \code{fvbmcov} and \code{fvbmstderr}.
+
+## Installation
+
+You can install BoltzMM from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("andrewthomasjones/BoltzMM")
+```
+
+## Examples
+
+Compute the probability of every length n=3 binary spin vector under bvec and Mmat:
+
+```{r example, eval = FALSE}
+bvec <- c(0,0.5,0.25)
+Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
+allpfvbm(bvec,Mmat)
+```
+
+Generate num=1000 random strings of n=3 binary spin variables under bvec and Mmat.
+```{r example2, eval = FALSE}
+num <- 1000
+bvec <- c(0,0.5,0.25)
+Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
+data <- rfvbm(num,bvec,Mmat)
+```
+
+Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
+ 
+```{r example3, eval = FALSE}
+fitfvbm(data,bvec,Mmat)
+```
+
+For more examples see individual help files.
