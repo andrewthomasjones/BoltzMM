@@ -4,8 +4,9 @@ Title: Boltzmann Machines with MM Algorithms
 Version: 0.1.0
 Author: Andrew Thomas Jones, Hien Duy Ngyuen
 Maintainer: Andrew Thomas Jones <andrewthomasjones@gmail.com>
-Description: BoltzMM is a package for probability computation, data generation, and model estimation of fully-visible Boltzmann machines.
-    It follows the methods described in Nguyen and Wood (2016a) <doi:10.1162/NECO_a_00813> and Nguyen and Wood (2016b) <doi:10.1109/TNNLS.2015.2425898>. 
+Description: Estimates a fully-visible Boltzmann machine via
+    maximum pseudolikelihood estimation using an MM algorithm following the method of 
+    H.D. Nguyen and I.A. Wood (2016) <doi:10.1109/TNNLS.2015.2425898>
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
