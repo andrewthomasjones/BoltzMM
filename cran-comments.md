@@ -1,7 +1,7 @@
 ## Test environments
 * local OS X install, R 3.4.2
-* ubuntu 12.04 (on travis-ci), R 3.4.2
-* win-builder (devel and release)
+* ubuntu 14.04, R 3.4.4
+* win-builder
 
 ## R CMD check results
 
@@ -13,4 +13,8 @@
 
 This is a new release, so there are no reverse dependencies.
 
+## Resubmission
+This is a resubmission. In this version I have:
 
+* removed the superfluous vingette builder field in the DESCRIPTION file
+* added a reference for the method to the DESCRIPTION file

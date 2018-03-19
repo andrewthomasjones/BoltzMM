@@ -5,7 +5,8 @@ Version: 0.1.0
 Author: Andrew Thomas Jones, Hien Duy Ngyuen
 Maintainer: Andrew Thomas Jones <andrewthomasjones@gmail.com>
 Description: Estimates a fully-visible Boltzmann machine via
-    maximum pseudolikelihood estimation using an MM algorithm.
+    maximum pseudolikelihood estimation using an MM algorithm following the method of 
+    H.D. Nguyen and I.A. Wood (2016) <doi:10.1109/TNNLS.2015.2425898>
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
