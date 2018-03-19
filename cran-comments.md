@@ -16,5 +16,6 @@ This is a new release, so there are no reverse dependencies.
 ## Resubmission
 This is a resubmission. In this version I have:
 
+* corrected the package description
 * removed the superfluous vingette builder field in the DESCRIPTION file
 * added a reference for the method to the DESCRIPTION file
