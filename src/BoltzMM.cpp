@@ -53,7 +53,7 @@ double pfvbm(arma::vec xval, arma::vec bvec, arma::mat Mmat) {
     double norm = 0.0;
     int count = std::pow(2,n);
 
-    if(xval.n_elem!= n | Mmat.n_rows!=n | Mmat.n_cols!=n | Mmat.n_rows!=Mmat.n_cols ){
+    if(xval.n_elem!= n || Mmat.n_rows!=n || Mmat.n_cols!=n || Mmat.n_rows!=Mmat.n_cols ){
       Rcpp::Rcerr << "Input variable dimensions do not match";
     }else{
 
@@ -74,7 +74,7 @@ double pfvbm(arma::vec xval, arma::vec bvec, arma::mat Mmat) {
 //'@param Mmat Symmetric n by n matrix, with zeros along the diagonal, containing the interaction parameters.
 //'@return A vector of the probabilities of all 2^n binary spin vectors under a fully-visible Boltzmann machine with bias vector \code{bvec} and interaction matrix \code{Mmat}. Probabilities are reported in ascending order of the binary strings; i.e for n=2 the reporting order is (-1,1), (-1,1), (1,-1), and (1,1).
 //'@references H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
-//'@author Andrew T. Jones and Hien D. Nguyen
+//'@author Andrew T. Jones and Hien D. FNguyen
 //'@examples # Compute the probability of every length n=3 binary spin vector under bvec and Mmat.
 //'bvec <- c(0,0.5,0.25)
 //'Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
@@ -87,7 +87,7 @@ arma::rowvec allpfvbm(arma::vec bvec, arma::mat Mmat) {
     int count = std::pow(2,n);
     arma::rowvec probvec = arma::zeros(count).t();
 
-    if(Mmat.n_rows!=n | Mmat.n_cols!=n | Mmat.n_rows!=Mmat.n_cols ){
+    if(Mmat.n_rows!=n || Mmat.n_cols!=n || Mmat.n_rows!=Mmat.n_cols ){
       Rcpp::Rcerr << "Input variable dimensions do not match";
     }else{
         for(int i=0; i<count; i++){
@@ -122,7 +122,7 @@ arma::mat rfvbm(int num, arma::vec bvec, arma::mat Mmat) {
   int n = bvec.n_elem;
   arma::mat returnmat   = arma::zeros(num,n);
 
-  if(Mmat.n_rows!=n | Mmat.n_cols!=n | Mmat.n_rows!=Mmat.n_cols ){
+  if(Mmat.n_rows!=n || Mmat.n_cols!=n || Mmat.n_rows!=Mmat.n_cols ){
     Rcpp::Rcerr << "Input variable dimensions do not match";
   }else{
 
@@ -164,7 +164,7 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
     int D = bvec.n_elem;
     int itt = 0;
 
-    if(Mmat.n_rows!=D | Mmat.n_cols!=D | data.n_cols !=D | data.n_cols!=Mmat.n_cols | data.n_cols!=Mmat.n_rows |Mmat.n_rows!=Mmat.n_cols){
+    if(Mmat.n_rows!=D || Mmat.n_cols!=D || data.n_cols !=D || data.n_cols!=Mmat.n_cols || data.n_cols!=Mmat.n_rows || Mmat.n_rows!=Mmat.n_cols){
         Rcpp::Rcerr << "Input variable dimensions do not match";
         return(Rcpp::List::create());
     }
@@ -187,7 +187,7 @@ Rcpp::List fitfvbm(arma::mat data, arma::vec bvec, arma::mat Mmat, double delta_
     double sumj = 0.0;
     double sumk = 0.0;
 
-    while (delta > delta_crit & itt<max_it)
+    while ((delta > delta_crit) && (itt<max_it))
     {
         itt++;
         old_par = par;
