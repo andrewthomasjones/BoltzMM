@@ -29,7 +29,7 @@ pfvbm <- function(xval, bvec, Mmat) {
 #'@param Mmat Symmetric n by n matrix, with zeros along the diagonal, containing the interaction parameters.
 #'@return A vector of the probabilities of all 2^n binary spin vectors under a fully-visible Boltzmann machine with bias vector \code{bvec} and interaction matrix \code{Mmat}. Probabilities are reported in ascending order of the binary strings; i.e for n=2 the reporting order is (-1,1), (-1,1), (1,-1), and (1,1).
 #'@references H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
-#'@author Andrew T. Jones and Hien D. Nguyen
+#'@author Andrew T. Jones and Hien D. FNguyen
 #'@examples # Compute the probability of every length n=3 binary spin vector under bvec and Mmat.
 #'bvec <- c(0,0.5,0.25)
 #'Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
