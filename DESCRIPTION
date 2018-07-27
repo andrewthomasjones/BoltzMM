@@ -1,19 +1,16 @@
 Package: BoltzMM
 Type: Package
 Title: Boltzmann Machines with MM Algorithms
-Version: 0.1.0
+Version: 0.1.1
 Author: Andrew Thomas Jones, Hien Duy Ngyuen
 Maintainer: Andrew Thomas Jones <andrewthomasjones@gmail.com>
-Description: Estimates a fully-visible Boltzmann machine via
-    maximum pseudolikelihood estimation using an MM algorithm.
+Description: Provides probability computation, data generation,
+    and model estimation for fully-visible Boltzmann machines. It follows the methods
+    described in Nguyen and Wood (2016a) <doi:10.1162/NECO_a_00813> 
+    and Nguyen and Wood (2016b) <doi:10.1109/TNNLS.2015.2425898>. 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp, RcppArmadillo, BH
-Imports: Rcpp,
-         stats
-Suggests: knitr,
-    rmarkdown,
-    testthat
-VignetteBuilder: knitr
+Imports: Rcpp
 RoxygenNote: 6.0.1
