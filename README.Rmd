@@ -25,11 +25,13 @@ Covariance estimation and normal standard errors can be computed using `fvbmcov`
 
 ## Installation
 
+Install from CRAN using:
+
 ```{r cran-installation, eval = FALSE}
 install.packages("BoltzMM")
 ```
 
-You can install the latest version of BoltzMM from github with:
+Alternatively,you can install the latest version of BoltzMM from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
