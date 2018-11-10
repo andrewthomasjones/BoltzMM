@@ -104,7 +104,7 @@ library(BoltzMM)
 ## Load 'testthat' library.
 library(testthat)
 
-## Test 'BoltzMM'.
+## Test 'BoltzMM'
 test_package("BoltzMM")
 ```
 
