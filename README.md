@@ -1,33 +1,36 @@
 
-<img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
-[![Downloads from the RStudio CRAN
-mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
+<img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a> [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM) [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+BoltzMM
+=======
 
-# BoltzMM
+The BoltzMM package allows for computation of probability mass functions of fully-visible Boltzmann machines via `pfvbm` and `allpfvbm`. Random data can be generated using `rfvbm`. Maximum pseudolikelihood estimation of parameters via the MM algorithm can be conducted using `fitfvbm`. Computation of partial derivatives and Hessians can be performed via `fvbmpartiald` and `fvbmHessian`. Covariance estimation and normal standard errors can be computed using `fvbmcov` and `fvbmstderr`.
 
-The BoltzMM package allows for computation of probability mass functions
-of fully-visible Boltzmann machines via `pfvbm` and `allpfvbm`. Random
-data can be generated using `rfvbm`. Maximum pseudolikelihood estimation
-of parameters via the MM algorithm can be conducted using `fitfvbm`.
-Computation of partial derivatives and Hessians can be performed via
-`fvbmpartiald` and `fvbmHessian`. Covariance estimation and normal
-standard errors can be computed using `fvbmcov` and `fvbmstderr`.
+Installation
+------------
 
-## Installation
+Installation
+------------
 
-You can install BoltzMM from github with:
+If `devtools` has already been installed, then the most current build of `BoltzMM` can be obtained via the command:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("andrewthomasjones/BoltzMM")
+devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = T)
 ```
 
-## Examples
+The latest stable build of `BoltzMM` can be obtain from CRAN via the command:
 
-Compute the probability of every length n=3 binary spin vector under
-bvec and Mmat:
+``` r
+install.packages("BoltzMM", repos='http://cran.us.r-project.org')
+```
+
+An archival build of `BoltzMM` is available at <https://zenodo.org/record/1317784>. Manual installation instructions can be found within the *R* installation and administration manual <https://cran.r-project.org/doc/manuals/r-release/R-admin.html>.
+
+Examples
+--------
+
+Compute the probability of every length n=3 binary spin vector under bvec and Mmat:
 
 ``` r
 library(BoltzMM)
@@ -42,8 +45,7 @@ allpfvbm(bvec,Mmat)
 #> [1,] 0.2001342 0.2985652
 ```
 
-Generate num=1000 random strings of n=3 binary spin variables under bvec
-and Mmat.
+Generate num=1000 random strings of n=3 binary spin variables under bvec and Mmat.
 
 ``` r
 library(BoltzMM)
@@ -64,8 +66,7 @@ head(data)
 #> [6,]    1    1    1
 ```
 
-Fit a fully visible Boltzmann machine to data, starting from parameters
-bvec and Mmat.
+Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
 
 ``` r
 library(BoltzMM)
@@ -93,3 +94,25 @@ fitfvbm(data,bvec,Mmat)
 ```
 
 For more examples see individual help files.
+
+Unit testing
+------------
+
+Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: 10 November, 2018. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
+
+``` r
+
+## Load 'BoltzMM' library.
+library(BoltzMM)
+
+## Load 'testthat' library.
+library(testthat)
+
+## Test 'BoltzMM'.
+#test_package("BoltzMM")
+```
+
+Bug reporting and contributions
+-------------------------------
+
+Thank you for your interest in `BoltzMM`. If you happen to find any bugs in the program, then please report them on the Issues page (<https://github.com/andrewthomasjones/BoltzMM/issues>). Support can also be sought on this page. Furthermore, if you would like to make a contribution to the software, then please forward a pull request to the owner of the repository.
