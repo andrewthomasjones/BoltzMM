@@ -105,7 +105,7 @@ library(BoltzMM)
 library(testthat)
 
 ## Test 'BoltzMM'.
-test_package('BoltzMM')
+test_package("BoltzMM")
 ```
 
 ## Bug reporting and contributions
