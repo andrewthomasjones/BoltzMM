@@ -25,18 +25,21 @@ Covariance estimation and normal standard errors can be computed using `fvbmcov`
 
 ## Installation
 
-Install from CRAN using:
+## Installation
 
-```{r cran-installation, eval = FALSE}
-install.packages("BoltzMM")
+If `devtools` has already been installed, then the most current build of `BoltzMM` can be obtained via the command:
+
+```{r GH-install, eval=F}
+devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = T)
 ```
 
-Alternatively,you can install the latest version of BoltzMM from github with:
+The latest stable build of `BoltzMM` can be obtain from CRAN via the command:
 
-```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("andrewthomasjones/BoltzMM")
+```{r CRAN-install, eval = F}
+install.packages("BoltzMM", repos='http://cran.us.r-project.org')
 ```
+
+An archival build of `BoltzMM` is available at https://zenodo.org/record/1317784. Manual installation instructions can be found within the *R* installation and administration manual https://cran.r-project.org/doc/manuals/r-release/R-admin.html.
 
 ## Examples
 
@@ -78,3 +81,26 @@ fitfvbm(data,bvec,Mmat)
 ```
 
 For more examples see individual help files.
+
+
+## Unit testing
+
+Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: `r format(Sys.time(), '%d %B, %Y')`. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
+
+```{r unittest}
+
+
+## Load 'BoltzMM' library.
+library(BoltzMM)
+
+## Load 'testthat' library.
+library(testthat)
+
+## Test 'BoltzMM'.
+test_package('BoltzMM')
+```
+
+## Bug reporting and contributions
+
+Thank you for your interest in `BoltzMM`. If you happen to find any bugs in the program, then please report them on the Issues page (https://github.com/andrewthomasjones/BoltzMM/issues). Support can also be sought on this page. Furthermore, if you would like to make a contribution to the software, then please forward a pull request to the owner of the repository.
+
