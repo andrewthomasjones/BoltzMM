@@ -2,6 +2,15 @@
 output: github_document
 ---
 
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+
 <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
 [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
 [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
@@ -88,7 +97,6 @@ For more examples see individual help files.
 Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: `r format(Sys.time(), '%d %B, %Y')`. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
 
 ```{r unittest}
-
 
 ## Load 'BoltzMM' library.
 library(BoltzMM)
