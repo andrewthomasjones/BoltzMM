@@ -19,12 +19,6 @@ Computes the normal approximation standard errors from the sandwich estimator of
 }
 \examples{
 # Generate num=1000 random strings of n=3 binary spin variables under bvec and Mmat.
-}
-\references{
-H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
-}
-\author{
-Andrew T. Jones and Hien D. Nguyen
 num <- 1000
 bvec <- c(0,0.5,0.25)
 Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
@@ -35,4 +29,10 @@ model <- fitfvbm(data,bvec,Mmat)
 covarmat <- fvbmcov(data,model,fvbmHess)
 # Compute the standard errors of the parameter elements according to a normal approximation.
 fvbmstderr(data,covarmat)
+}
+\references{
+H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
+}
+\author{
+Andrew T. Jones and Hien D. Nguyen
 }

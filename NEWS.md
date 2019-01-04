@@ -1,3 +1,6 @@
+#BoltzMM 0.1.3
+Added new functions and documentation.
+
 #BoltzMM 0.1.2
 Updating documentation and adding functionality.
 
