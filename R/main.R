@@ -1,4 +1,4 @@
-importFrom("stats", "pnorm")
+#'@importFrom stats pnorm
 NULL
 
 #'Standard errors for the parameter elements of a fitted fully-visible Boltzmann machine.
@@ -163,5 +163,20 @@ marginpfvbm <- function(bvec, Mmat) {
   #return marginal probability vector
   return(margins)
 }
+
+#'@title Senate data from ..
+#'
+#'@description A dataset containing the
+#'each row is, each col is, data is either, yes, no, NA
+#'
+#' @source \url{}
+#'@docType data
+#'@keywords datasets
+#'@name senate
+#'@usage data(senate)
+#'@format A data frame with 147 rows (votes) and 9 variables (parties).
+#'#'@examples
+#'dim(senate)
+NULL
 
 
