@@ -1,3 +1,6 @@
+importFrom("stats", "pnorm")
+NULL
+
 #'Standard errors for the parameter elements of a fitted fully-visible Boltzmann machine.
 #'@description Computes the normal approximation standard errors from the sandwich estimator of the covariance matrix for a maximum pseudolikelihood estimated fully-visible Boltzmann machine.
 #'@param data An N by n matrix, where each of the N rows contains a length n string of spin variables  (i.e. each element is -1 or 1).
@@ -153,7 +156,7 @@ marginpfvbm <- function(bvec, Mmat) {
   allprob <-allpfvbm(bvec,Mmat)
 
   #sum over allprob
-  margins <- array(n,NA)
+  margins <- array(NA,n)
   for (i in seq_len(n)){
     margins[i] <- sum(allprob[which(strings[,i]==1)])
   }
