@@ -93,6 +93,40 @@ fitfvbm(data,bvec,Mmat)
 #> [1] 5
 ```
 
+A real world example from [cite].
+``` r
+# Load bnstruct library
+library(bnstruct)
+library(BoltzMM)
+
+#load data
+senate_data<-data(senate)
+# Turn data into a matrix
+senate_data <- as.matrix(senate_data)
+
+# Conduct imputation
+imp_data <- knn.impute(senate_data,k=1)
+
+# No governement - use as reference level
+data_nogov <- imp_data[,-1]
+
+# Initialize parameters
+bvec <- rep(0,9)
+Mmat <- matrix(0,9,9)
+nullmodel<-list(bvec,Mmat)
+
+# Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
+model <- fitfvbm(data_nogov,bvec,Mmat)
+# Compute the sandwich covariance matrix using the data and the model.
+covarmat <- fvbmcov(data_nogov,model,fvbmHess)
+# Compute the standard errors of the parameter elements according to a normal approximation.
+st_errors <- fvbmstderr(data_nogov,covarmat)
+# Compute z-scores and p-values under null
+test_results<-fvbmtests(data,model,nullmodel)
+
+test_results
+```
+
 For more examples see individual help files.
 
 Unit testing
