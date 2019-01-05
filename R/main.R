@@ -164,12 +164,16 @@ marginpfvbm <- function(bvec, Mmat) {
   return(margins)
 }
 
-#'@title Senate data from ..
+#'@title Senate voting data from the 45th Australian Parliament.
 #'
-#'@description A dataset containing the
-#'each row is, each col is, data is either, yes, no, NA
+#'@description A dataset he data from the first sitting of the Senate of the 45th
+#' Australian Parliament, until the final sitting of the year 2016. The first division during
+#'this period was conducted on the 31st of August 2016, and the last division was performed
+#'on the 1st of December 2016. In total, 147 divisions were performed during this period.
 #'
-#' @source \url{}
+#'Each row represents a division(vote), each column is a party or independent.
+#'Data is either "Yes" or "No" depending on the vote. Absences and abstentions are left as NA.
+#'@source \url{www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet/General/divisions}
 #'@docType data
 #'@keywords datasets
 #'@name senate
