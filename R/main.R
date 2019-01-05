@@ -173,6 +173,7 @@ marginpfvbm <- function(bvec, Mmat) {
 #'
 #'Each row represents a division(vote), each column is a party or independent.
 #'Data is either "Yes" or "No" depending on the vote. Absences and abstentions are left as NA.
+#'See \url{https://hal.archives-ouvertes.fr/hal-01927188v1} for details of data preparation.
 #'@source \url{www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet/General/divisions}
 #'@docType data
 #'@keywords datasets

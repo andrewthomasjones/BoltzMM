@@ -21,5 +21,6 @@ on the 1st of December 2016. In total, 147 divisions were performed during this 
 
 Each row represents a division(vote), each column is a party or independent.
 Data is either "Yes" or "No" depending on the vote. Absences and abstentions are left as NA.
+See \url{https://hal.archives-ouvertes.fr/hal-01927188v1} for details of data preparation.
 }
 \keyword{datasets}
