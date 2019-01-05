@@ -113,7 +113,7 @@ data_nogov <- imp_data[,-1]
 # Initialize parameters
 bvec <- rep(0,8)
 Mmat <- matrix(0,8,8)
-nullmodel<-list(bvec,Mmat)
+nullmodel<-list(bvec=bvec,Mmat=Mmat)
 
 # Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
 model <- fitfvbm(data_nogov,bvec,Mmat)
