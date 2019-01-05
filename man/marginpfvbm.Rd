@@ -15,7 +15,7 @@ marginpfvbm(bvec, Mmat)
 Vector of length n containing the marginal probabilities.
 }
 \description{
-Computes the marginal probabilities under under some specified bias vector and interaction matrix.
+Computes the marginal probabilities (for value = 1) under under some specified bias vector and interaction matrix.
 }
 \examples{
 #Compute the marginal probabilities under bvec and Mmat.

@@ -125,15 +125,17 @@ fvbmtests <- function(data,model,nullmodel) {
   zb <- (model$bvec-nullmodel$bvec)/stderr$bvec_se
   #z-scores for interaction parameters
   zM <- (model$Mmat-nullmodel$Mmat)/stderr$Mmat_se
+  diag(zM)<-NA
   #p-values from z-scores
   pvalb <- 2*pnorm(-abs(zb))
   pvalM <- 2*pnorm(-abs(zM))
+  diag(pvalM)<-NA
   #return list
   return(list(bvec_z = zb, bvec_p = pvalb, Mmat_z = zM, Mmat_p = pvalM))
 }
 
 #'Marginal probability function for a fully-visible Boltzmann machine.
-#'@description Computes the marginal probabilities under under some specified bias vector and interaction matrix.
+#'@description Computes the marginal probabilities (for value = 1) under under some specified bias vector and interaction matrix.
 #'@param bvec Vector of length n containing real valued bias parameters.
 #'@param Mmat Symmetric n by n matrix, with zeros along the diagonal, containing the interaction parameters.
 #'@return Vector of length n containing the marginal probabilities.

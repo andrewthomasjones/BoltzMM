@@ -34,8 +34,6 @@ Covariance estimation and normal standard errors can be computed using `fvbmcov`
 
 ## Installation
 
-## Installation
-
 If `devtools` has already been installed, then the most current build of `BoltzMM` can be obtained via the command:
 
 ```{r GH-install, eval=F}
@@ -90,25 +88,31 @@ fitfvbm(data,bvec,Mmat)
 ```
 
 Example with real data from https://hal.archives-ouvertes.fr/hal-01927188v1.
-```{r example3, eval = T}
-# Load bnstruct library
+```{r exampleReal, eval = T}
+# Load bnstruct library & package
 library(bnstruct)
 library(BoltzMM)
 
 #load data
-senate_data<-data(senate)
-# Turn data into a matrix
-senate_data <- as.matrix(senate_data)
+data(senate)
 
-# Conduct imputation
+# Turn data into a matrix
+senate_data <- as.matrix(senate)
+
+#recode Yes as 1, and No as -1
+senate_data[senate_data=="Yes"]<-1
+senate_data[senate_data=="No"]<--1
+
+# Conduct imputation for missing data
 imp_data <- knn.impute(senate_data,k=1)
 
-# No governement - use as reference level
+# No governement - using as reference level
 data_nogov <- imp_data[,-1]
 
+
 # Initialize parameters
-bvec <- rep(0,9)
-Mmat <- matrix(0,9,9)
+bvec <- rep(0,8)
+Mmat <- matrix(0,8,8)
 nullmodel<-list(bvec,Mmat)
 
 # Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
@@ -118,7 +122,7 @@ covarmat <- fvbmcov(data_nogov,model,fvbmHess)
 # Compute the standard errors of the parameter elements according to a normal approximation.
 st_errors <- fvbmstderr(data_nogov,covarmat)
 # Compute z-scores and p-values under null
-test_results<-fvbmtests(data,model,nullmodel)
+test_results<-fvbmtests(data_nogov,model,nullmodel)
 
 test_results
 ```
@@ -129,11 +133,11 @@ For more examples see individual help files.
 
 Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: `r format(Sys.time(), '%d %B, %Y')`. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
 
-```{r unittest}
+```{r unittest,  eval = F}
 
 ## Load 'BoltzMM' library.
 library(BoltzMM)
-
+  
 ## Load 'testthat' library.
 library(testthat)
 

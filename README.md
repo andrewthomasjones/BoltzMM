@@ -1,36 +1,48 @@
 
-<img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a> [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM) [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
+<img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
+[![Downloads from the RStudio CRAN
+mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
+[![Build
+Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-BoltzMM
-=======
 
-The BoltzMM package allows for computation of probability mass functions of fully-visible Boltzmann machines via `pfvbm` and `allpfvbm`. Random data can be generated using `rfvbm`. Maximum pseudolikelihood estimation of parameters via the MM algorithm can be conducted using `fitfvbm`. Computation of partial derivatives and Hessians can be performed via `fvbmpartiald` and `fvbmHessian`. Covariance estimation and normal standard errors can be computed using `fvbmcov` and `fvbmstderr`.
+# BoltzMM
 
-Installation
-------------
+The BoltzMM package allows for computation of probability mass functions
+of fully-visible Boltzmann machines via `pfvbm` and `allpfvbm`. Random
+data can be generated using `rfvbm`. Maximum pseudolikelihood estimation
+of parameters via the MM algorithm can be conducted using `fitfvbm`.
+Computation of partial derivatives and Hessians can be performed via
+`fvbmpartiald` and `fvbmHessian`. Covariance estimation and normal
+standard errors can be computed using `fvbmcov` and `fvbmstderr`.
 
-Installation
-------------
+## Installation
 
-If `devtools` has already been installed, then the most current build of `BoltzMM` can be obtained via the command:
+If `devtools` has already been installed, then the most current build of
+`BoltzMM` can be obtained via the
+command:
 
 ``` r
 devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = T)
 ```
 
-The latest stable build of `BoltzMM` can be obtain from CRAN via the command:
+The latest stable build of `BoltzMM` can be obtain from CRAN via the
+command:
 
 ``` r
 install.packages("BoltzMM", repos='http://cran.us.r-project.org')
 ```
 
-An archival build of `BoltzMM` is available at <https://zenodo.org/record/1317784>. Manual installation instructions can be found within the *R* installation and administration manual <https://cran.r-project.org/doc/manuals/r-release/R-admin.html>.
+An archival build of `BoltzMM` is available at
+<https://zenodo.org/record/1317784>. Manual installation instructions
+can be found within the *R* installation and administration manual
+<https://cran.r-project.org/doc/manuals/r-release/R-admin.html>.
 
-Examples
---------
+## Examples
 
-Compute the probability of every length n=3 binary spin vector under bvec and Mmat:
+Compute the probability of every length n=3 binary spin vector under
+bvec and Mmat:
 
 ``` r
 library(BoltzMM)
@@ -45,7 +57,8 @@ allpfvbm(bvec,Mmat)
 #> [1,] 0.2001342 0.2985652
 ```
 
-Generate num=1000 random strings of n=3 binary spin variables under bvec and Mmat.
+Generate num=1000 random strings of n=3 binary spin variables under bvec
+and Mmat.
 
 ``` r
 library(BoltzMM)
@@ -66,7 +79,8 @@ head(data)
 #> [6,]    1    1    1
 ```
 
-Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
+Fit a fully visible Boltzmann machine to data, starting from parameters
+bvec and Mmat.
 
 ``` r
 library(BoltzMM)
@@ -93,26 +107,47 @@ fitfvbm(data,bvec,Mmat)
 #> [1] 5
 ```
 
-A real world example from [cite].
+Example with real data from
+<https://hal.archives-ouvertes.fr/hal-01927188v1>.
+
 ``` r
-# Load bnstruct library
+# Load bnstruct library & package
 library(bnstruct)
+#> Loading required package: bitops
+#> Loading required package: Matrix
+#> Loading required package: igraph
+#> 
+#> Attaching package: 'igraph'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     decompose, spectrum
+#> The following object is masked from 'package:base':
+#> 
+#>     union
 library(BoltzMM)
 
 #load data
-senate_data<-data(senate)
+data(senate)
+
 # Turn data into a matrix
-senate_data <- as.matrix(senate_data)
+senate_data <- as.matrix(senate)
 
-# Conduct imputation
+#recode Yes as 1, and No as -1
+senate_data[senate_data=="Yes"]<-1
+senate_data[senate_data=="No"]<--1
+
+# Conduct imputation for missing data
 imp_data <- knn.impute(senate_data,k=1)
+#> Warning in storage.mode(use.data) <- "double": NAs introduced by coercion
+#> Warning in storage.mode(imp.data) <- "double": NAs introduced by coercion
 
-# No governement - use as reference level
+# No governement - using as reference level
 data_nogov <- imp_data[,-1]
 
+
 # Initialize parameters
-bvec <- rep(0,9)
-Mmat <- matrix(0,9,9)
+bvec <- rep(0,8)
+Mmat <- matrix(0,8,8)
 nullmodel<-list(bvec,Mmat)
 
 # Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
@@ -122,17 +157,31 @@ covarmat <- fvbmcov(data_nogov,model,fvbmHess)
 # Compute the standard errors of the parameter elements according to a normal approximation.
 st_errors <- fvbmstderr(data_nogov,covarmat)
 # Compute z-scores and p-values under null
-test_results<-fvbmtests(data,model,nullmodel)
+test_results<-fvbmtests(data_nogov,model,nullmodel)
 
 test_results
+#> $bvec_z
+#> numeric(0)
+#> 
+#> $bvec_p
+#> numeric(0)
+#> 
+#> $Mmat_z
+#> numeric(0)
+#> 
+#> $Mmat_p
+#> numeric(0)
 ```
 
 For more examples see individual help files.
 
-Unit testing
-------------
+## Unit testing
 
-Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: 10 November, 2018. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
+Using the package `testthat`, we have conducted the following unit test
+for the GitHub build, on the date: 05 January, 2019. The testing files
+are contained in the
+[tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests)
+folder of the respository.
 
 ``` r
 
@@ -142,11 +191,15 @@ library(BoltzMM)
 ## Load 'testthat' library.
 library(testthat)
 
-## Test 'BoltzMM'.
-#test_package("BoltzMM")
+## Test 'BoltzMM'
+test_package("BoltzMM")
 ```
 
-Bug reporting and contributions
--------------------------------
+## Bug reporting and contributions
 
-Thank you for your interest in `BoltzMM`. If you happen to find any bugs in the program, then please report them on the Issues page (<https://github.com/andrewthomasjones/BoltzMM/issues>). Support can also be sought on this page. Furthermore, if you would like to make a contribution to the software, then please forward a pull request to the owner of the repository.
+Thank you for your interest in `BoltzMM`. If you happen to find any bugs
+in the program, then please report them on the Issues page
+(<https://github.com/andrewthomasjones/BoltzMM/issues>). Support can
+also be sought on this page. Furthermore, if you would like to make a
+contribution to the software, then please forward a pull request to the
+owner of the repository.
