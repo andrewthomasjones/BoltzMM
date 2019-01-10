@@ -19,4 +19,3 @@ Suggests: testthat,
     knitr,
     rmarkdown,
     bnstruct
-VignetteBuilder: knitr
