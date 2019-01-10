@@ -119,8 +119,7 @@ fvbmHess <- function(data, model) {
 #'# Generate num=1000 random strings of n=3 binary spin variables under bvec and Mmat.
 #'num <- 1000; bvec <- c(0,0.5,0.25); Mmat <- matrix(0.1,3,3) - diag(0.1,3,3);
 #'data <- rfvbm(num,bvec,Mmat)
-#'
-# Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
+#'# Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
 #'model <- fitfvbm(data,bvec,Mmat)
 #'
 #'#Propose a null hypothesis model
@@ -151,10 +150,10 @@ fvbmtests <- function(data,model,nullmodel) {
 }
 
 #'Marginal probability function for a fully-visible Boltzmann machine.
-#'@description Computes the marginal probabilities (for value = 1) under under some specified bias vector and interaction matrix.
+#'@description Computes the marginal probabilities (for values = +1 in each coordinate) under under some specified bias vector and interaction matrix, specified by \code{bvec} and \code{Mmat}, respectively.
 #'@param bvec Vector of length n containing real valued bias parameters.
 #'@param Mmat Symmetric n by n matrix, with zeros along the diagonal, containing the interaction parameters.
-#'@return Vector of length n containing the marginal probabilities.
+#'@return Vector of length n containing the marginal probabilities of +1 in each coordinate.
 #'@references H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
 #'@author Andrew T. Jones and Hien D. Nguyen
 #'@examples
@@ -192,13 +191,15 @@ marginpfvbm <- function(bvec, Mmat) {
 #'Each row represents a division(vote), each column is a party or independent.
 #'Data is either "Yes" or "No" depending on the vote. Absences and abstentions are left as NA.
 #'See \url{https://hal.archives-ouvertes.fr/hal-01927188v1} for details of data preparation.
+#'
 #'@source \url{www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet/General/divisions}
 #'@docType data
 #'@keywords datasets
 #'@name senate
 #'@usage data(senate)
 #'@format A data frame with 147 rows (votes) and 9 variables (parties).
-#'#'@examples
+#'@author Jessica J. Bagnall
+#'@examples
 #'dim(senate)
 NULL
 
