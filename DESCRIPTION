@@ -14,7 +14,7 @@ LazyData: true
 LinkingTo: Rcpp, RcppArmadillo, BH
 Imports: Rcpp
 Depends: R (>= 2.10)
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: testthat,
     knitr,
     rmarkdown,
