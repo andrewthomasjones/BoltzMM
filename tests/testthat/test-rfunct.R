@@ -1,4 +1,5 @@
 context("Check native R Functions")
+library(BoltzMM)
 
 test_that("Check that fvbmHess calculates Hesssian Correctly.",{
   model<-list()
