@@ -27,5 +27,5 @@ allpfvbm(bvec,Mmat)
 H.D. Nguyen and I.A. Wood (2016), Asymptotic normality of the maximum pseudolikelihood estimator for fully-visible Boltzmann machines, IEEE Transactions on Neural Networks and Learning Systems, vol. 27, pp. 897-902.
 }
 \author{
-Andrew T. Jones and Hien D. FNguyen
+Andrew T. Jones and Hien D. Nguyen
 }
