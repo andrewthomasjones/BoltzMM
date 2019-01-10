@@ -12,10 +12,10 @@ marginpfvbm(bvec, Mmat)
 \item{Mmat}{Symmetric n by n matrix, with zeros along the diagonal, containing the interaction parameters.}
 }
 \value{
-Vector of length n containing the marginal probabilities.
+Vector of length n containing the marginal probabilities of +1 in each coordinate.
 }
 \description{
-Computes the marginal probabilities (for value = 1) under under some specified bias vector and interaction matrix.
+Computes the marginal probabilities (for values = +1 in each coordinate) under under some specified bias vector and interaction matrix, specified by \code{bvec} and \code{Mmat}, respectively.
 }
 \examples{
 #Compute the marginal probabilities under bvec and Mmat.

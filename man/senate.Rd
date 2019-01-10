@@ -4,9 +4,7 @@
 \name{senate}
 \alias{senate}
 \title{Senate voting data from the 45th Australian Parliament.}
-\format{A data frame with 147 rows (votes) and 9 variables (parties).
-#'@examples
-dim(senate)}
+\format{A data frame with 147 rows (votes) and 9 variables (parties).}
 \source{
 \url{www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet/General/divisions}
 }
@@ -22,5 +20,11 @@ on the 1st of December 2016. In total, 147 divisions were performed during this 
 Each row represents a division(vote), each column is a party or independent.
 Data is either "Yes" or "No" depending on the vote. Absences and abstentions are left as NA.
 See \url{https://hal.archives-ouvertes.fr/hal-01927188v1} for details of data preparation.
+}
+\examples{
+dim(senate)
+}
+\author{
+Jessica J. Bagnall
 }
 \keyword{datasets}
