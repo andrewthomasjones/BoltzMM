@@ -1,12 +1,6 @@
 ---
-title: 'BoltzMM: an R package for maximum pseudolikelihood estimation of fully-visible Boltzmann machines'
-tags:
-- artificial neural network
-- graphical model
-- maximum pseudolikelihood estimation
-- multivariate binary data
-- probability mass function
-- R
+title: 'BoltzMM: an R package for maximum pseudolikelihood estimation of fully-visible
+  Boltzmann machines'
 authors:
 - affiliation: 1
   name: Andrew T. Jones
@@ -16,7 +10,15 @@ authors:
   name: Hien D. Nguyen
   orcid: 0000-0002-9958-432X
 date: "11 January, 2019"
+output: pdf_document
 bibliography: paper.bib
+tags:
+- artificial neural network
+- graphical model
+- maximum pseudolikelihood estimation
+- multivariate binary data
+- probability mass function
+- R
 affiliations:
 - index: 1
   name: School of Mathematics and Physics, University of Queensland, St. Lucia 4072,
