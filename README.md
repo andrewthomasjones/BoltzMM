@@ -35,7 +35,7 @@ install.packages("BoltzMM", repos='http://cran.us.r-project.org')
 ```
 
 An archival build of `BoltzMM` is available at
-<https://zenodo.org/record/1317784>. Manual installation instructions
+<https://zenodo.org/record/1339352>. Manual installation instructions
 can be found within the *R* installation and administration manual
 <https://cran.r-project.org/doc/manuals/r-release/R-admin.html>.
 
