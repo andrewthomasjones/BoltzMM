@@ -10,9 +10,6 @@ authors:
   name: Hien D. Nguyen
   orcid: 0000-0002-9958-432X
 date: "11 January, 2019"
-output:
-  html_document:
-    df_print: paged
 bibliography: paper.bib
 tags:
 - artificial neural network
