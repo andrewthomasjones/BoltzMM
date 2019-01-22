@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
 <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
 [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
 [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
+[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -46,7 +47,7 @@ The latest stable build of `BoltzMM` can be obtain from CRAN via the command:
 install.packages("BoltzMM", repos='http://cran.us.r-project.org')
 ```
 
-An archival build of `BoltzMM` is available at [url]. Manual installation instructions can be found within the *R* installation and administration manual https://cran.r-project.org/doc/manuals/r-release/R-admin.html.
+An archival build of `BoltzMM` is available at http://doi.org/10.5281/zenodo.2538256. Manual installation instructions can be found within the *R* installation and administration manual https://cran.r-project.org/doc/manuals/r-release/R-admin.html.
 
 ## Examples
 
