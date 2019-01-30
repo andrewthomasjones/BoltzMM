@@ -1,6 +1,8 @@
 
-<img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a> [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM) [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM) [![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
-
+<!-- <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a> -->
+<!-- [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM) -->
+<!-- [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM) -->
+<!-- [![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a) -->
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 BoltzMM
 =======
@@ -108,20 +110,20 @@ library(bnstruct)
 #>     union
 library(BoltzMM)
 
-#load data
+# Load data
 data(senate)
 
 # Turn data into a matrix
 senate_data <- as.matrix(senate)
 
-#recode Yes as 1, and No as -1
-senate_data[senate_data=="Yes"]<-1
-senate_data[senate_data=="No"]<--1
+# Recode Yes as 1, and No as -1, and make the "NA"s proper NA values
+senate_data[senate=="Yes"] <- 1
+senate_data[senate=="No"] <- -1
 
-# Conduct imputation for missing data
-imp_data <- knn.impute(senate_data,k=1)
-#> Warning in storage.mode(use.data) <- "double": NAs introduced by coercion
-#> Warning in storage.mode(imp.data) <- "double": NAs introduced by coercion
+# Conduct imputation
+imp_data <- knn.impute(suppressWarnings(matrix(as.numeric(senate_data),
+                                        dim(senate_data))),
+                       k=1)
 
 # No governement - using as reference level
 data_nogov <- imp_data[,-1]
@@ -191,24 +193,7 @@ test_results
 #> [8,] 2.020973e-02 2.399652e-02           NA
 ```
 
-For more examples see individual help files.
-
-Unit testing
-------------
-
-Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: 30 January, 2019. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
-
-``` r
-
-## Load 'BoltzMM' library.
-library(BoltzMM)
-  
-## Load 'testthat' library.
-library(testthat)
-
-## Test 'BoltzMM'
-test_package("BoltzMM")
-```
+For more examples, see individual help files.
 
 Reference to package
 --------------------
@@ -239,6 +224,28 @@ citation('BoltzMM')
 #> ATTENTION: This citation information has been auto-generated from
 #> the package DESCRIPTION file and may need manual editing, see
 #> 'help("citation")'.
+```
+
+Contributions
+-------------
+
+The `BoltzMM` package is authored by Andrew T. Jones \[@andrewthomasjones\](<https://github.com/andrewthomasjones>), Hien D. Nguyen (@hiendn), and Jessica J. Bagnall.
+
+Unit testing
+------------
+
+Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: 30 January, 2019. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
+
+``` r
+
+## Load 'BoltzMM' library.
+library(BoltzMM)
+  
+## Load 'testthat' library.
+library(testthat)
+
+## Test 'BoltzMM'
+test_package("BoltzMM")
 ```
 
 Bug reporting and contributions
