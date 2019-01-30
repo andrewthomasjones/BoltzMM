@@ -12,10 +12,10 @@ knitr::opts_chunk$set(
 
 
 
-<!-- <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a> -->
-<!-- [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM) -->
-<!-- [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM) -->
-<!-- [![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a) -->
+<img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
+[![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
+[![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
+[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 
 # BoltzMM
 
-The BoltzMM package allows for computation of probability mass functions of fully-visible Boltzmann machines via `pfvbm` and `allpfvbm`.
+The BoltzMM package allows for computation of probability mass functions of fully-visible Boltzmann machines (FVBMs) via `pfvbm` and `allpfvbm`.
 Random data can be generated using `rfvbm`. Maximum pseudolikelihood estimation of parameters via the MM algorithm can be conducted using `fitfvbm`.
 Computation of partial derivatives and Hessians can be performed via `fvbmpartiald` and `fvbmHessian`.
 Covariance estimation and normal standard errors can be computed using `fvbmcov` and `fvbmstderr`.
@@ -133,6 +133,12 @@ test_results
 
 For more examples, see individual help files.
 
+## Technical references
+
+Please refer to the following sources regarding various facets of the FVBM models that are implimented in the package.
+
+The FVBM model and the consistency of their maximum pseudolikelihood estimators (MPLEs) was first considered in http://doi.org/10.1162/neco.2006.18.10.2283. The MM algorithm implimented in the main function `fitfvbm` was introduced in http://doi.org/10.1162/NECO_a_00813. Here various convergence results regarding the algorithm is proved. Next, the asymptotic normality results pertaining to the use of the functions `fvbmstderr` and `fvbmtests` are proved in http://doi.org/10.1109/TNNLS.2015.2425898. Finally, the `senate` data was introduced and analysed in https://hal.archives-ouvertes.fr/hal-01927188v1.
+
 ## Reference to package
 
 If you find this package useful in your work, then please follow the usual `R` instructions for citing the package in your publications. That is, follow the instructions from `citation('BoltzMM')`.
@@ -142,9 +148,12 @@ If you find this package useful in your work, then please follow the usual `R` i
 citation('BoltzMM')
 ```
 
-## Contributions
+## Authorship statement
 
-The `BoltzMM` package is authored by Andrew T. Jones [@andrewthomasjones](https://github.com/andrewthomasjones), Hien D. Nguyen (@hiendn), and Jessica J. Bagnall. 
+The `BoltzMM` package is co-authored by [Andrew T. Jones][], [Hien D. Nguyen][], and Jessica J. Bagnall. The initial development of the package, in native `R` was conducted by HDN. Implimentation of the core loops of the package in the `C` language was performed by ATJ. JJB formatted and contributed the `senate` data set as well as the example analysis on the `senate` data. All three co-authors contributed to the documentation of the software as well as troubleshooting and testing.
+
+[Andrew T. Jones]: https://github.com/andrewthomasjones
+[Hien D. Nguyen]: https://github.com/hiendn
 
 ## Unit testing
 
