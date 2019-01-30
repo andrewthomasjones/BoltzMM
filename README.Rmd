@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
 ```
 
 
+
 <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
 [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
 [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
@@ -144,6 +145,15 @@ library(testthat)
 
 ## Test 'BoltzMM'
 test_package("BoltzMM")
+```
+
+## Reference to package
+
+If you find this package useful in your work, then please follow the usual `R` instructions for citing the package in your publications. That is, follow the instructions from `citation('BoltzMM')`.
+
+```{r citation}
+# Citation instructions
+citation('BoltzMM')
 ```
 
 ## Bug reporting and contributions

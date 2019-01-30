@@ -1,49 +1,33 @@
 
-<img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
-[![Downloads from the RStudio CRAN
-mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
-[![Build
-Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
-[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
+<img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a> [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM) [![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM) [![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+BoltzMM
+=======
 
-# BoltzMM
+The BoltzMM package allows for computation of probability mass functions of fully-visible Boltzmann machines via `pfvbm` and `allpfvbm`. Random data can be generated using `rfvbm`. Maximum pseudolikelihood estimation of parameters via the MM algorithm can be conducted using `fitfvbm`. Computation of partial derivatives and Hessians can be performed via `fvbmpartiald` and `fvbmHessian`. Covariance estimation and normal standard errors can be computed using `fvbmcov` and `fvbmstderr`.
 
-The BoltzMM package allows for computation of probability mass functions
-of fully-visible Boltzmann machines via `pfvbm` and `allpfvbm`. Random
-data can be generated using `rfvbm`. Maximum pseudolikelihood estimation
-of parameters via the MM algorithm can be conducted using `fitfvbm`.
-Computation of partial derivatives and Hessians can be performed via
-`fvbmpartiald` and `fvbmHessian`. Covariance estimation and normal
-standard errors can be computed using `fvbmcov` and `fvbmstderr`.
+Installation
+------------
 
-## Installation
-
-If `devtools` has already been installed, then the most current build of
-`BoltzMM` can be obtained via the
-command:
+If `devtools` has already been installed, then the most current build of `BoltzMM` can be obtained via the command:
 
 ``` r
 devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = T)
 ```
 
-The latest stable build of `BoltzMM` can be obtain from CRAN via the
-command:
+The latest stable build of `BoltzMM` can be obtain from CRAN via the command:
 
 ``` r
 install.packages("BoltzMM", repos='http://cran.us.r-project.org')
 ```
 
-An archival build of `BoltzMM` is available at
-<http://doi.org/10.5281/zenodo.2538256>. Manual installation
-instructions can be found within the *R* installation and administration
-manual <https://cran.r-project.org/doc/manuals/r-release/R-admin.html>.
+An archival build of `BoltzMM` is available at <http://doi.org/10.5281/zenodo.2538256>. Manual installation instructions can be found within the *R* installation and administration manual <https://cran.r-project.org/doc/manuals/r-release/R-admin.html>.
 
-## Examples
+Examples
+--------
 
-Compute the probability of every length n=3 binary spin vector under
-bvec and Mmat:
+Compute the probability of every length n=3 binary spin vector under bvec and Mmat:
 
 ``` r
 library(BoltzMM)
@@ -58,8 +42,7 @@ allpfvbm(bvec,Mmat)
 #> [1,] 0.2001342 0.2985652
 ```
 
-Generate num=1000 random strings of n=3 binary spin variables under bvec
-and Mmat.
+Generate num=1000 random strings of n=3 binary spin variables under bvec and Mmat.
 
 ``` r
 library(BoltzMM)
@@ -80,8 +63,7 @@ head(data)
 #> [6,]    1    1    1
 ```
 
-Fit a fully visible Boltzmann machine to data, starting from parameters
-bvec and Mmat.
+Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
 
 ``` r
 library(BoltzMM)
@@ -108,8 +90,7 @@ fitfvbm(data,bvec,Mmat)
 #> [1] 5
 ```
 
-Example with real data from
-<https://hal.archives-ouvertes.fr/hal-01927188v1>.
+Example with real data from <https://hal.archives-ouvertes.fr/hal-01927188v1>.
 
 ``` r
 # Load bnstruct library & package
@@ -212,13 +193,10 @@ test_results
 
 For more examples see individual help files.
 
-## Unit testing
+Unit testing
+------------
 
-Using the package `testthat`, we have conducted the following unit test
-for the GitHub build, on the date: 22 January, 2019. The testing files
-are contained in the
-[tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests)
-folder of the respository.
+Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: 30 January, 2019. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
 
 ``` r
 
@@ -232,11 +210,38 @@ library(testthat)
 test_package("BoltzMM")
 ```
 
-## Bug reporting and contributions
+Reference to package
+--------------------
 
-Thank you for your interest in `BoltzMM`. If you happen to find any bugs
-in the program, then please report them on the Issues page
-(<https://github.com/andrewthomasjones/BoltzMM/issues>). Support can
-also be sought on this page. Furthermore, if you would like to make a
-contribution to the software, then please forward a pull request to the
-owner of the repository.
+If you find this package useful in your work, then please follow the usual `R` instructions for citing the package in your publications. That is, follow the instructions from `citation('BoltzMM')`.
+
+``` r
+# Citation instructions
+citation('BoltzMM')
+#> 
+#> To cite package 'BoltzMM' in publications use:
+#> 
+#>   Andrew Thomas Jones, Hien Duy Nguyen and Jessica Juanita Bagnall
+#>   (2019). BoltzMM: Boltzmann Machines with MM Algorithms. R
+#>   package version 0.1.3.
+#>   https://CRAN.R-project.org/package=BoltzMM
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {BoltzMM: Boltzmann Machines with MM Algorithms},
+#>     author = {Andrew Thomas Jones and Hien Duy Nguyen and Jessica Juanita Bagnall},
+#>     year = {2019},
+#>     note = {R package version 0.1.3},
+#>     url = {https://CRAN.R-project.org/package=BoltzMM},
+#>   }
+#> 
+#> ATTENTION: This citation information has been auto-generated from
+#> the package DESCRIPTION file and may need manual editing, see
+#> 'help("citation")'.
+```
+
+Bug reporting and contributions
+-------------------------------
+
+Thank you for your interest in `BoltzMM`. If you happen to find any bugs in the program, then please report them on the Issues page (<https://github.com/andrewthomasjones/BoltzMM/issues>). Support can also be sought on this page. Furthermore, if you would like to make a contribution to the software, then please forward a pull request to the owner of the repository.
