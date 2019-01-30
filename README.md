@@ -114,7 +114,7 @@ data(senate)
 # Turn data into a matrix
 senate_data <- as.matrix(senate)
 
-# Recode Yes as 1, and No as -1, and make the "NA"s proper NA values
+# Recode Yes as 1, and No as -1
 senate_data[senate=="Yes"] <- 1
 senate_data[senate=="No"] <- -1
 
@@ -196,9 +196,9 @@ For more examples, see individual help files.
 Technical references
 --------------------
 
-Please refer to the following sources regarding various facets of the FVBM models that are implimented in the package.
+Please refer to the following sources regarding various facets of the FVBM models that are implemented in the package.
 
-The FVBM model and the consistency of their maximum pseudolikelihood estimators (MPLEs) was first considered in <http://doi.org/10.1162/neco.2006.18.10.2283>. The MM algorithm implimented in the main function `fitfvbm` was introduced in <http://doi.org/10.1162/NECO_a_00813>. Here various convergence results regarding the algorithm is proved. Next, the asymptotic normality results pertaining to the use of the functions `fvbmstderr` and `fvbmtests` are proved in <http://doi.org/10.1109/TNNLS.2015.2425898>. Finally, the `senate` data was introduced and analysed in <https://hal.archives-ouvertes.fr/hal-01927188v1>.
+The FVBM model and the consistency of their maximum pseudolikelihood estimators (MPLEs) was first considered in <http://doi.org/10.1162/neco.2006.18.10.2283>. The MM algorithm implemented in the main function `fitfvbm` was introduced in <http://doi.org/10.1162/NECO_a_00813>. Here various convergence results regarding the algorithm is proved. Next, the asymptotic normality results pertaining to the use of the functions `fvbmstderr` and `fvbmtests` are proved in <http://doi.org/10.1109/TNNLS.2015.2425898>. Finally, the `senate` data was introduced and analysed in <https://hal.archives-ouvertes.fr/hal-01927188v1>.
 
 Reference to package
 --------------------
@@ -234,12 +234,12 @@ citation('BoltzMM')
 Authorship statement
 --------------------
 
-The `BoltzMM` package is co-authored by [Andrew T. Jones](https://github.com/andrewthomasjones), [Hien D. Nguyen](https://github.com/hiendn), and Jessica J. Bagnall. The initial development of the package, in native `R` was conducted by HDN. Implimentation of the core loops of the package in the `C` language was performed by ATJ. JJB formatted and contributed the `senate` data set as well as the example analysis on the `senate` data. All three co-authors contributed to the documentation of the software as well as troubleshooting and testing.
+The `BoltzMM` package is co-authored by [Andrew T. Jones](https://github.com/andrewthomasjones), [Hien D. Nguyen](https://github.com/hiendn), and Jessica J. Bagnall. The initial development of the package, in native `R` was conducted by HDN. Implementation of the core loops of the package in the `C` language was performed by ATJ. JJB formatted and contributed the `senate` data set as well as the example analysis on the `senate` data. All three co-authors contributed to the documentation of the software as well as troubleshooting and testing.
 
 Unit testing
 ------------
 
-Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: 30 January, 2019. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the respository.
+Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: 30 January, 2019. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the repository.
 
 ``` r
 
