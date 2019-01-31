@@ -241,6 +241,17 @@ Unit testing
 
 Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: 30 January, 2019. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the repository.
 
+``` r
+
+## Load 'BoltzMM' library.
+library(BoltzMM)
+  
+## Load 'testthat' library.
+library(testthat)
+
+## Test 'BoltzMM'
+test_package("BoltzMM")
+```
 
 Bug reporting and contributions
 -------------------------------
