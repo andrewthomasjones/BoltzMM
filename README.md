@@ -26,7 +26,7 @@ If `devtools` has already been installed, then the most current build of
 command:
 
 ``` r
-devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = T)
+devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = TRUE)
 ```
 
 The latest stable build of `BoltzMM` can be obtain from CRAN via the
