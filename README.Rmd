@@ -159,18 +159,6 @@ The `BoltzMM` package is co-authored by [Andrew T. Jones][], [Hien D. Nguyen][],
 
 Using the package `testthat`, we have conducted the following unit test for the GitHub build, on the date: `r format(Sys.time(), '%d %B, %Y')`. The testing files are contained in the [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests) folder of the repository.
 
-```{r unittest,  eval = F}
-
-## Load 'BoltzMM' library.
-library(BoltzMM)
-  
-## Load 'testthat' library.
-library(testthat)
-
-## Test 'BoltzMM'
-test_package("BoltzMM")
-```
-
 ## Bug reporting and contributions
 
 Thank you for your interest in `BoltzMM`. If you happen to find any bugs in the program, then please report them on the Issues page (https://github.com/andrewthomasjones/BoltzMM/issues). Support can also be sought on this page. Furthermore, if you would like to make a contribution to the software, then please forward a pull request to the owner of the repository.
