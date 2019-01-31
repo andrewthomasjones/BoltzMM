@@ -38,13 +38,13 @@ Covariance estimation and normal standard errors can be computed using `fvbmcov`
 
 If `devtools` has already been installed, then the most current build of `BoltzMM` can be obtained via the command:
 
-```{r GH-install, eval=F}
-devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = T)
+```{r GH-install, eval=FALSE}
+devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = TRUE)
 ```
 
 The latest stable build of `BoltzMM` can be obtain from CRAN via the command:
 
-```{r CRAN-install, eval = F}
+```{r CRAN-install, eval = FALSE}
 install.packages("BoltzMM", repos='http://cran.us.r-project.org')
 ```
 
@@ -54,7 +54,7 @@ An archival build of `BoltzMM` is available at http://doi.org/10.5281/zenodo.253
 
 Compute the probability of every length n=3 binary spin vector under bvec and Mmat:
 
-```{r example, eval = T}
+```{r example, eval = TRUE}
 library(BoltzMM)
 set.seed(1)
 
@@ -64,7 +64,7 @@ allpfvbm(bvec,Mmat)
 ```
 
 Generate num=1000 random strings of n=3 binary spin variables under bvec and Mmat.
-```{r example2, eval = T}
+```{r example2, eval = TRUE}
 library(BoltzMM)
 set.seed(1)
 
@@ -78,7 +78,7 @@ head(data)
 
 Fit a fully visible Boltzmann machine to data, starting from parameters bvec and Mmat.
  
-```{r example3, eval = T}
+```{r example3, eval = TRUE}
 library(BoltzMM)
 set.seed(1)
 
@@ -90,7 +90,7 @@ fitfvbm(data,bvec,Mmat)
 ```
 
 Example with real data from https://hal.archives-ouvertes.fr/hal-01927188v1.
-```{r exampleReal, eval = T}
+```{r exampleReal, eval = TRUE}
 # Load bnstruct library & package
 library(bnstruct)
 library(BoltzMM)
