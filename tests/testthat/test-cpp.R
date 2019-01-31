@@ -1,5 +1,6 @@
 context("Check Exported C++ Functions")
 library(BoltzMM)
+tol_C<-1.0e-3
 
 test_that("Test fitfvbm ", {
   bvec<-c(0,0.5,0.25)
@@ -11,7 +12,7 @@ test_that("Test fitfvbm ", {
   tmp2 <- "./ffitfvbm"
 
   # The first run always succeeds, but warns
-  expect_known_output(fitfvbmResult, tmp2, print = TRUE)
+  expect_known_output(fitfvbmResult, tmp2, tolerance=tol_C, print = TRUE)
 
 })
 
@@ -24,9 +25,9 @@ test_that("Test pfvbm", {
   bvec <- c(0,0.5,0.25)
   Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
 
-  expect_equal(pfvbm(xval1,bvec,Mmat), 0.1213876, tolerance = 1.0e-07)
-  expect_equal(pfvbm(xval2,bvec,Mmat), 0.2985652, tolerance = 1.0e-07)
-  expect_equal(pfvbm(xval3,bvec,Mmat), 0.0666189, tolerance = 1.0e-07)
+  expect_equal(pfvbm(xval1,bvec,Mmat), 0.1213876, tolerance=tol_C)
+  expect_equal(pfvbm(xval2,bvec,Mmat), 0.2985652, tolerance=tol_C)
+  expect_equal(pfvbm(xval3,bvec,Mmat), 0.0666189, tolerance=tol_C)
 
 })
 
@@ -45,7 +46,7 @@ test_that("Test fvbmpartiald", {
   tmp2 <- "./fvbmpartiald"
 
   # The first run always succeeds, but warns
-  expect_known_output(fvbmpartialdResult, tmp2, print = TRUE)
+  expect_known_output(fvbmpartialdResult, tmp2,tolerance=tol_C, print = TRUE)
 
 })
 
@@ -59,7 +60,7 @@ test_that(" Test allpfvbm", {
           0.2985652), nrow=1)
 
 
-  expect_equal(allpfvbm(bvec,Mmat), res1, tolerance = 1.0e-07)
+  expect_equal(allpfvbm(bvec,Mmat), res1,tolerance=tol_C)
 
 })
 
@@ -77,7 +78,7 @@ test_that("Test fvbmcov", {
   tmp2 <- "./fvbmcov"
 
   # The first run alwafvbmcovs succeeds, but warns
-  expect_known_output(fvbmcovResult, tmp2, print = TRUE)
+  expect_known_output(fvbmcovResult, tmp2, tolerance=tol_C, print = TRUE)
 
 })
 
