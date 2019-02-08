@@ -14,7 +14,7 @@ test_that("Check that fvbmHess calculates Hesssian Correctly.",{
   tmp1 <- "./fvbmHess"
 
   # The first run always succeeds, but warns
-  expect_known_output(HessResult, tmp1, print = TRUE)
+  expect_known_output(HessResult, tmp1, print = TRUE, update=FALSE)
 
 })
 
@@ -28,7 +28,7 @@ test_that("Check that fvbmstderr calculates stderr Correctly.",{
   tmp2 <- "./fvbmstderr"
 
   # The first run always succeeds, but warns
-  expect_known_output(stderrResult, tmp2, print = TRUE)
+  expect_known_output(stderrResult, tmp2, print = TRUE, update=FALSE)
 
 })
 
@@ -39,7 +39,7 @@ test_that("Check that marginpfvbm calculates marginal probailities Correctly.",{
   tmp2 <- "./marginpfvbm"
 
   # The first run always succeeds, but warns
-  expect_known_output(marginResult, tmp2, print = TRUE)
+  expect_known_output(marginResult, tmp2, print = TRUE, update=FALSE)
 
 })
 
@@ -54,6 +54,6 @@ test_that("Check that fvbmtests calculates scores and p-values correctly.",{
   testResult<-fvbmtests(data,model,nullmodel)
   tmp2 <- "./fvbmtests"
   # The first run always succeeds, but warns
-  expect_known_output(testResult, tmp2, print = TRUE)
+  expect_known_output(testResult, tmp2, print = TRUE, update=FALSE)
 
 })

@@ -12,7 +12,7 @@ test_that("Test fitfvbm ", {
   tmp2 <- "./ffitfvbm"
 
   # The first run always succeeds, but warns
-  expect_known_output(fitfvbmResult, tmp2, tolerance=tol_C, print = TRUE)
+  expect_known_output(fitfvbmResult, tmp2, tolerance=tol_C, print = TRUE, update=FALSE)
 
 })
 
@@ -25,9 +25,9 @@ test_that("Test pfvbm", {
   bvec <- c(0,0.5,0.25)
   Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
 
-  expect_equal(pfvbm(xval1,bvec,Mmat), 0.1213876, tolerance=tol_C)
-  expect_equal(pfvbm(xval2,bvec,Mmat), 0.2985652, tolerance=tol_C)
-  expect_equal(pfvbm(xval3,bvec,Mmat), 0.0666189, tolerance=tol_C)
+  expect_equal(pfvbm(xval1,bvec,Mmat), 0.1213876, tolerance=tol_C, update=FALSE)
+  expect_equal(pfvbm(xval2,bvec,Mmat), 0.2985652, tolerance=tol_C, update=FALSE)
+  expect_equal(pfvbm(xval3,bvec,Mmat), 0.0666189, tolerance=tol_C, update=FALSE)
 
 })
 
@@ -46,7 +46,7 @@ test_that("Test fvbmpartiald", {
   tmp2 <- "./fvbmpartiald"
 
   # The first run always succeeds, but warns
-  expect_known_output(fvbmpartialdResult, tmp2,tolerance=tol_C, print = TRUE)
+  expect_known_output(fvbmpartialdResult, tmp2,tolerance=tol_C, print = TRUE, update=FALSE)
 
 })
 
@@ -60,7 +60,7 @@ test_that(" Test allpfvbm", {
           0.2985652), nrow=1)
 
 
-  expect_equal(allpfvbm(bvec,Mmat), res1,tolerance=tol_C)
+  expect_equal(allpfvbm(bvec,Mmat), res1,tolerance=tol_C, update=FALSE)
 
 })
 
