@@ -13,7 +13,8 @@ test_that("Check that fvbmHess calculates Hesssian Correctly.",{
 
   tmp1 <- "./fvbmHess"
 
-  # The first run always succeeds, but warns
+  expect_equal(dim(HessResult), c(6,6))
+  expect_is(HessResult, "matrix")
   expect_known_output(HessResult, tmp1, print = TRUE, update=FALSE)
 
 })
@@ -27,7 +28,13 @@ test_that("Check that fvbmstderr calculates stderr Correctly.",{
   stderrResult<-fvbmstderr(data, covarmat)
   tmp2 <- "./fvbmstderr"
 
-  # The first run always succeeds, but warns
+
+  expect_is(stderrResult, "list")
+  expect_is(stderrResult[[1]], "numeric")
+  expect_is(stderrResult[[2]], "matrix")
+  expect_equal(length(stderrResult), 2)
+  expect_equal(length(stderrResult[[1]]), 3)
+  expect_equal(dim(stderrResult[[2]]), c(3,3))
   expect_known_output(stderrResult, tmp2, print = TRUE, update=FALSE)
 
 })
@@ -38,6 +45,7 @@ test_that("Check that marginpfvbm calculates marginal probailities Correctly.",{
   marginResult<-marginpfvbm(bvec, Mmat)
   tmp2 <- "./marginpfvbm"
 
+  expect_equal(length(marginResult), 3)
   # The first run always succeeds, but warns
   expect_known_output(marginResult, tmp2, print = TRUE, update=FALSE)
 
@@ -53,7 +61,17 @@ test_that("Check that fvbmtests calculates scores and p-values correctly.",{
   nullmodel <- list(bvec = c(0,0,0), Mmat = matrix(0,3,3))
   testResult<-fvbmtests(data,model,nullmodel)
   tmp2 <- "./fvbmtests"
-  # The first run always succeeds, but warns
+
+  expect_is(testResult, "list")
+  expect_is(testResult[[1]], "numeric")
+  expect_is(testResult[[3]], "matrix")
+  expect_is(testResult[[2]], "numeric")
+  expect_is(testResult[[4]], "matrix")
+  expect_equal(length(testResult), 4)
+  expect_equal(length(testResult[[1]]), 3)
+  expect_equal(length(testResult[[2]]), 3)
+  expect_equal(dim(testResult[[3]]), c(3,3))
+  expect_equal(dim(testResult[[4]]), c(3,3))
   expect_known_output(testResult, tmp2, print = TRUE, update=FALSE)
 
 })
