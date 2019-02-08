@@ -23,7 +23,7 @@ test_that("Test fitfvbm ", {
   expect_equal(length(fitfvbmResult[[4]]), 1)
 
   # The first run always succeeds, but warns
-  expect_known_output(fitfvbmResult, tmp2, tolerance=tol_C, print = TRUE, update=FALSE)
+  ##expect_known_output(fitfvbmResult, tmp2, tolerance=tol_C, print = TRUE, update=FALSE)
 
 })
 
@@ -64,8 +64,13 @@ test_that("Test fvbmpartiald", {
   fvbmpartialdResult<-fvbmpartiald(data, model)
   tmp2 <- "./fvbmpartiald"
 
-  # The first run always succeeds, but warns
-  expect_known_output(fvbmpartialdResult, tmp2,tolerance=tol_C, print = TRUE, update=FALSE)
+  expect_is(fvbmpartialdResult, "list")
+  expect_is(fvbmpartialdResult[[1]], "numeric")
+  expect_is(fvbmpartialdResult[[2]], "matrix")
+  expect_equal(length(fvbmpartialdResult), 2)
+  expect_equal(length(fvbmpartialdResult[[1]]), 3)
+  expect_equal(dim(fvbmpartialdResult[[2]]), c(3,3))
+  ##expect_known_output(fvbmpartialdResult, tmp2,tolerance=tol_C, print = TRUE, update=FALSE)
 
 })
 
@@ -102,7 +107,7 @@ test_that("Test fvbmcov", {
   # The first run alwafvbmcovs succeeds, but warns
   expect_is(fvbmcovResult, "matrix")
   expect_equal(dim(fvbmcovResult), c(6,6))
-  expect_known_output(fvbmcovResult, tmp2, tolerance=tol_C, print = TRUE)
+  #expect_known_output(fvbmcovResult, tmp2, tolerance=tol_C, print = TRUE)
 
 })
 
@@ -116,6 +121,6 @@ test_that("Test fvbmcov", {
 #   tmp2 <- "./rfvbm"
 #
 #   # The first run alwarfvbms succeeds, but warns
-#   expect_known_output(rfvbmResult, tmp2, print = TRUE)
+#   #expect_known_output(rfvbmResult, tmp2, print = TRUE)
 #
 # })

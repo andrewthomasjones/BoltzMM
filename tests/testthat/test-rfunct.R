@@ -15,7 +15,7 @@ test_that("Check that fvbmHess calculates Hesssian Correctly.",{
 
   expect_equal(dim(HessResult), c(6,6))
   expect_is(HessResult, "matrix")
-  expect_known_output(HessResult, tmp1, print = TRUE, update=FALSE)
+  #expect_known_output(HessResult, tmp1, print = TRUE, update=FALSE)
 
 })
 
@@ -35,7 +35,7 @@ test_that("Check that fvbmstderr calculates stderr Correctly.",{
   expect_equal(length(stderrResult), 2)
   expect_equal(length(stderrResult[[1]]), 3)
   expect_equal(dim(stderrResult[[2]]), c(3,3))
-  expect_known_output(stderrResult, tmp2, print = TRUE, update=FALSE)
+  #expect_known_output(stderrResult, tmp2, print = TRUE, update=FALSE)
 
 })
 
@@ -47,7 +47,7 @@ test_that("Check that marginpfvbm calculates marginal probailities Correctly.",{
 
   expect_equal(length(marginResult), 3)
   # The first run always succeeds, but warns
-  expect_known_output(marginResult, tmp2, print = TRUE, update=FALSE)
+  #expect_known_output(marginResult, tmp2, print = TRUE, update=FALSE)
 
 })
 
@@ -72,6 +72,6 @@ test_that("Check that fvbmtests calculates scores and p-values correctly.",{
   expect_equal(length(testResult[[2]]), 3)
   expect_equal(dim(testResult[[3]]), c(3,3))
   expect_equal(dim(testResult[[4]]), c(3,3))
-  expect_known_output(testResult, tmp2, print = TRUE, update=FALSE)
+  #expect_known_output(testResult, tmp2, print = TRUE, update=FALSE)
 
 })
