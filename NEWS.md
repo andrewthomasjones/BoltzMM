@@ -1,3 +1,6 @@
+#BoltzMM 0.1.4
+Revamp of documentation and unit tests.
+
 #BoltzMM 0.1.3
 Added even more new functions and documentation.
 

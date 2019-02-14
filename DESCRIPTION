@@ -1,7 +1,7 @@
 Package: BoltzMM
 Type: Package
 Title: Boltzmann Machines with MM Algorithms
-Version: 0.1.3
+Version: 0.1.4
 Author: Andrew Thomas Jones, Hien Duy Nguyen, and Jessica Juanita Bagnall 
 Maintainer: Andrew Thomas Jones <andrewthomasjones@gmail.com>
 Description: Provides probability computation, data generation,
