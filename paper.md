@@ -29,7 +29,7 @@ affiliations:
 
 # Summary
 
-The `BoltzMM` package (Version 0.1.3; https://CRAN.R-project.org/package=BoltzMM) for the `R` statistical programming environment [@R-Core-Team:2018aa] provides a complete suite of functions for application and estimation of *fully-visible Boltzmann Machine* (FVBM) models. The FVBM was first in @Hyvarinen2006, and can be described as follows.
+The `BoltzMM` package (Version 0.1.3; https://CRAN.R-project.org/package=BoltzMM) for the `R` statistical programming environment [@R-Core-Team:2018aa] provides a complete suite of functions for application and estimation of *fully-visible Boltzmann Machine* (FVBM) models. The FVBM was first considered in @Hyvarinen2006, and can be described as follows.
 
 Let $\boldsymbol{X}\in\mathbb{X}$ (where $\mathbb{X}=\{-1,+1\}^d$ is the set of *spin-binary strings* of dimension $d$) be a random variable with *probability mass function* (PMF) of the form
 $$f\left(\boldsymbol{x};\boldsymbol{\theta}\right)=\mathbb{P}\left(\boldsymbol{X}=\boldsymbol{x}\right)=\exp\left(\frac{1}{2}\boldsymbol{x}^{\top}\mathbf{M}\boldsymbol{x}+\mathbf{b}^{\top}\boldsymbol{x}\right)/z\left(\boldsymbol{\theta}\right),$$
