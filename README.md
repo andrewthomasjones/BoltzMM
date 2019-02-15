@@ -4,7 +4,7 @@
 mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
 [![Build
 Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
-[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
+[![DOI](http://joss.theoj.org/papers/10.21105/joss.01193/status.svg)](https://doi.org/10.21105/joss.01193)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
