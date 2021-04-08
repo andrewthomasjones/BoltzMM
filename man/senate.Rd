@@ -4,7 +4,9 @@
 \name{senate}
 \alias{senate}
 \title{Senate voting data from the 45th Australian Parliament.}
-\format{A data frame with 147 rows (votes) and 9 variables (parties).}
+\format{
+A data frame with 147 rows (votes) and 9 variables (parties).
+}
 \source{
 \url{www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet/General/divisions}
 }

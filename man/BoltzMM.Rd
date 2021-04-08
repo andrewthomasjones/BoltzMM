@@ -3,7 +3,6 @@
 \docType{package}
 \name{BoltzMM}
 \alias{BoltzMM}
-\alias{BoltzMM-package}
 \title{BoltzMM: A package for probability computation, data generation, and model estimation of fully-visible Boltzmann machines.}
 \description{
 The BoltzMM package allows for computation of probability mass functions of fully-visible Boltzmann machines via \code{pfvbm} and \code{allpfvbm}.

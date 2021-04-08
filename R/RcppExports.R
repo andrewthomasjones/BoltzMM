@@ -5,6 +5,18 @@
 #' @useDynLib BoltzMM
 NULL
 
+#'Compute the log pseudolikelihood
+#'@description
+#'@param data An N by n matrix, where each of the N rows contains a length n string of spin variables  (i.e. each element is -1 or 1).
+#'@param List A list where
+#'@return The the log pseudolikelihood of [].
+#'@author Andrew T. Jones and Hien D. Nguyen
+#'@examples
+#'@export
+log_pl_calc <- function(data, L) {
+    .Call('_BoltzMM_log_pl_calc', PACKAGE = 'BoltzMM', data, L)
+}
+
 #'Probability mass function of a fully-visible Boltzmann machine evaluated for an individual vector.
 #'@description Compute the probability of a string of n>1 binary spin variables (i.e. each element is -1 or 1) arising from a fully-visible Boltzmann machine with some specified bias vector and interaction matrix.
 #'@param xval Vector of length n containing binary spin variables.

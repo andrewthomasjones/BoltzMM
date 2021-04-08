@@ -6,6 +6,18 @@
 
 using namespace Rcpp;
 
+// log_pl_calc
+double log_pl_calc(arma::mat data, Rcpp::List L);
+RcppExport SEXP _BoltzMM_log_pl_calc(SEXP dataSEXP, SEXP LSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type L(LSEXP);
+    rcpp_result_gen = Rcpp::wrap(log_pl_calc(data, L));
+    return rcpp_result_gen;
+END_RCPP
+}
 // pfvbm
 double pfvbm(arma::vec xval, arma::vec bvec, arma::mat Mmat);
 RcppExport SEXP _BoltzMM_pfvbm(SEXP xvalSEXP, SEXP bvecSEXP, SEXP MmatSEXP) {
@@ -86,6 +98,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_BoltzMM_log_pl_calc", (DL_FUNC) &_BoltzMM_log_pl_calc, 2},
     {"_BoltzMM_pfvbm", (DL_FUNC) &_BoltzMM_pfvbm, 3},
     {"_BoltzMM_allpfvbm", (DL_FUNC) &_BoltzMM_allpfvbm, 2},
     {"_BoltzMM_rfvbm", (DL_FUNC) &_BoltzMM_rfvbm, 3},

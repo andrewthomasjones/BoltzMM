@@ -32,6 +32,110 @@ arma::vec bin_vec(int y,  int n)
   return(x);
 }
 
+
+//'Compute the log pseudolikelihood
+//'@description
+//'@param data An N by n matrix, where each of the N rows contains a length n string of spin variables  (i.e. each element is -1 or 1).
+//'@param List A list where
+//'@return The the log pseudolikelihood of [].
+//'@author Andrew T. Jones and Hien D. Nguyen
+//'@examples
+//'@export
+// [[Rcpp::export]]
+double log_pl_calc(arma::mat data, Rcpp::List L){
+
+  arma::vec a_vec = L["a_vec"];
+  arma::vec b_vec = L["b_vec"];
+  arma::mat bigA =  L["A_mat"];
+  arma::mat bigB =  L["B_mat"];
+  arma::mat bigC =  L["C_mat"];
+
+  double dp = L["p"];
+  double dq = L["q"];
+
+
+  double log_pl_value = 0.0;
+  double pl = 0.0;
+
+  double top = 0.0;
+  double bot = 0.0;
+  double top_plus = 0.0;
+  double bot_plus = 0.0;
+
+  int num = data.n_rows;
+  int p = (int) dp;
+  int q = (int) dq;
+
+  if(p+q != data.n_cols){
+    //visible and hidden need to add up
+    Rcpp::Rcerr << "Numbers of visible and hidden variables do not match dimension of data";
+  }
+
+  int n_hidden = (int) std::pow((double)q, 2.0); //q<=31!!!!
+
+  if(q > 31){
+    //too many hidden
+    Rcpp::Rcerr << "q is too large";
+  }
+
+  for(int k=0; k<num; k++){
+    pl = 0.0;
+    arma::mat x = data(k, arma::span(0,p-1));
+
+    arma::vec x1 = arma::vectorise(x);
+    arma::vec x2 = x1;
+
+    for(int i=0; i<p; i++){
+      x2 = x1;
+      x2(i) = -1.0*x1(i);
+      top = 0.0;
+      bot = 0.0;
+
+      for(int j=0; j<n_hidden; j++){
+        arma::vec y_strings = bin_vec(j,  q);
+
+        top_plus =  std::exp(x1(i)*a_vec(i)+x1(i)*arma::dot(bigA.col(i),x1)+
+          arma::dot(y_strings, b_vec) +
+          arma::as_scalar(0.5 * y_strings.t() * bigB * y_strings) +
+          arma::as_scalar(x1.t() * bigC * y_strings));
+
+        bot_plus =  std::exp(x2(i)*a_vec(i)+x2(i)*arma::dot(bigA.col(i),x1)+
+          arma::dot(y_strings, b_vec) +
+          arma::as_scalar(0.5 * y_strings.t() * bigB * y_strings) +
+          arma::as_scalar(x2.t()* bigC * y_strings));
+
+        top += top_plus;
+        bot += top_plus;
+        bot += bot_plus;
+      }
+      pl += std::log(top) - std::log(bot);
+    }
+    log_pl_value += pl;
+  }
+
+  return log_pl_value/dp;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //'Probability mass function of a fully-visible Boltzmann machine evaluated for an individual vector.
 //'@description Compute the probability of a string of n>1 binary spin variables (i.e. each element is -1 or 1) arising from a fully-visible Boltzmann machine with some specified bias vector and interaction matrix.
 //'@param xval Vector of length n containing binary spin variables.
