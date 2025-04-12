@@ -1,3 +1,6 @@
+#BoltzMM 0.1.5
+Fix broken link to data source and minor housekeeping updates
+
 #BoltzMM 0.1.4
 Revamp of documentation and unit tests.
 
