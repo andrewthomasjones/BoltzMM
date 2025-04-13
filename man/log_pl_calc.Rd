@@ -9,13 +9,13 @@ log_pl_calc(data, L)
 \arguments{
 \item{data}{An N by n matrix, where each of the N rows contains a length n string of spin variables  (i.e. each element is -1 or 1).}
 
-\item{List}{A list where}
+\item{L}{A list storing the parameter vectors a and b, and matrices  A, B and C}
 }
 \value{
 The the log pseudolikelihood of [].
 }
 \description{
-Compute the log pseudolikelihood
+Compute the log pseudolikelihood C++ version
 }
 \author{
 Andrew T. Jones and Hien D. Nguyen

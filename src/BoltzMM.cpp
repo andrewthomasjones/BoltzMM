@@ -34,12 +34,11 @@ arma::vec bin_vec(int y,  int n)
 
 
 //'Compute the log pseudolikelihood
-//'@description
+//'@description Compute the log pseudolikelihood C++ version
 //'@param data An N by n matrix, where each of the N rows contains a length n string of spin variables  (i.e. each element is -1 or 1).
-//'@param List A list where
+//'@param L A list storing the parameter vectors a and b, and matrices  A, B and C
 //'@return The the log pseudolikelihood of [].
 //'@author Andrew T. Jones and Hien D. Nguyen
-//'@examples
 //'@export
 // [[Rcpp::export]]
 double log_pl_calc(arma::mat data, Rcpp::List L){

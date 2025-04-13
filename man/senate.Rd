@@ -8,7 +8,7 @@
 A data frame with 147 rows (votes) and 9 variables (parties).
 }
 \source{
-\url{https://www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet#/divisions}
+\url{www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet/General/divisions}
 }
 \usage{
 data(senate)
