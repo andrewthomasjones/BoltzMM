@@ -8,7 +8,7 @@
 A data frame with 147 rows (votes) and 9 variables (parties).
 }
 \source{
-\url{www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet/General/divisions}
+\url{https://www.aph.gov.au/Parliamentary_Business/Statistics/Senate_StatsNet#/divisions}
 }
 \usage{
 data(senate)
@@ -21,7 +21,7 @@ on the 1st of December 2016. In total, 147 divisions were performed during this 
 
 Each row represents a division(vote), each column is a party or independent.
 Data is either "Yes" or "No" depending on the vote. Absences and abstentions are left as NA.
-See \url{https://hal.archives-ouvertes.fr/hal-01927188v1} for details of data preparation.
+See \url{https://hal.science/hal-01927188v1} for details of data preparation.
 }
 \examples{
 dim(senate)

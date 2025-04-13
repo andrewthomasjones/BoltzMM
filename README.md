@@ -2,9 +2,7 @@
 <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
 [![Downloads from the RStudio CRAN
 mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
-[![Build
-Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
-[![DOI](http://joss.theoj.org/papers/10.21105/joss.01193/status.svg)](https://doi.org/10.21105/joss.01193)
+[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -22,8 +20,7 @@ and normal standard errors can be computed using `fvbmcov` and
 ## Installation
 
 If `devtools` has already been installed, then the most current build of
-`BoltzMM` can be obtained via the
-command:
+`BoltzMM` can be obtained via the command:
 
 ``` r
 devtools::install_github('andrewthomasjones/BoltzMM',build_vignettes = TRUE)
@@ -53,10 +50,10 @@ set.seed(1)
 bvec <- c(0,0.5,0.25)
 Mmat <- matrix(0.1,3,3) - diag(0.1,3,3)
 allpfvbm(bvec,Mmat)
-#>           [,1]       [,2]      [,3]      [,4]       [,5]       [,6]
-#> [1,] 0.0666189 0.04465599 0.1213876 0.1213876 0.07362527 0.07362527
-#>           [,7]      [,8]
-#> [1,] 0.2001342 0.2985652
+#>           [,1]       [,2]      [,3]      [,4]       [,5]       [,6]      [,7]
+#> [1,] 0.0666189 0.04465599 0.1213876 0.1213876 0.07362527 0.07362527 0.2001342
+#>           [,8]
+#> [1,] 0.2985652
 ```
 
 Generate num=1000 random strings of n=3 binary spin variables under bvec
@@ -116,7 +113,6 @@ Example with real data from
 # Load bnstruct library & package
 library(bnstruct)
 #> Loading required package: bitops
-#> Loading required package: Matrix
 #> Loading required package: igraph
 #> 
 #> Attaching package: 'igraph'
@@ -163,8 +159,8 @@ test_results<-fvbmtests(data_nogov,model,nullmodel)
 
 test_results
 #> $bvec_z
-#> [1] -1.3871285  3.0958110  1.8099814 -0.4957960 -0.8230061 -0.1625973
-#> [7]  0.5715010  2.4308532
+#> [1] -1.3871285  3.0958110  1.8099814 -0.4957960 -0.8230061 -0.1625973  0.5715010
+#> [8]  2.4308532
 #> 
 #> $bvec_p
 #> [1] 0.165402598 0.001962754 0.070298676 0.620038322 0.410504513 0.870835547
@@ -238,27 +234,23 @@ is, follow the instructions from `citation('BoltzMM')`.
 ``` r
 # Citation instructions
 citation('BoltzMM')
-#> Warning in citation("BoltzMM"): no date field in DESCRIPTION file of
-#> package 'BoltzMM'
 #> Warning in citation("BoltzMM"): could not determine year for 'BoltzMM' from
 #> package DESCRIPTION file
-#> 
 #> To cite package 'BoltzMM' in publications use:
 #> 
-#>   Andrew Thomas Jones, Hien Duy Nguyen and Jessica Juanita Bagnall
-#>   (NA). BoltzMM: Boltzmann Machines with MM Algorithms. R package
-#>   version 0.1.3.
+#>   Jones AT, Nguyen HD, Bagnall JJ (????). _BoltzMM: Boltzmann Machines
+#>   with MM Algorithms_. R package version 0.1.5.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
 #>     title = {BoltzMM: Boltzmann Machines with MM Algorithms},
 #>     author = {Andrew Thomas Jones and Hien Duy Nguyen and Jessica Juanita Bagnall},
-#>     note = {R package version 0.1.3},
+#>     note = {R package version 0.1.5},
 #>   }
 #> 
-#> ATTENTION: This citation information has been auto-generated from
-#> the package DESCRIPTION file and may need manual editing, see
+#> ATTENTION: This citation information has been auto-generated from the
+#> package DESCRIPTION file and may need manual editing, see
 #> 'help("citation")'.
 ```
 
@@ -277,8 +269,8 @@ troubleshooting and testing.
 ## Unit testing
 
 Using the package `testthat`, we have conducted the following unit test
-for the GitHub build, on the date: 31 January, 2019. The testing files
-are contained in the
+for the GitHub build, on the date: 13 April, 2025. The testing files are
+contained in the
 [tests](https://github.com/andrewthomasjones/BoltzMM/tree/master/tests)
 folder of the repository.
 

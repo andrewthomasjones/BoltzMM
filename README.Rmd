@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 
 <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
 [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
-[![Build Status](https://travis-ci.org/andrewthomasjones/BoltzMM.svg?branch=master)](https://travis-ci.org/andrewthomasjones/BoltzMM)
 [![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
