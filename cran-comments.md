@@ -6,7 +6,6 @@
 * github actions ubuntu 24.04.2, R 4.5.0
 * github actions ubuntu 24.04.2, R Under development (unstable) (2025-04-11 r88138)
 * github actions Microsoft Windows Server 2022, R 4.5.0
-* winbuilder R 4.5.0
 
 ## R CMD check results
 
