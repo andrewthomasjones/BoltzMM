@@ -2,7 +2,7 @@
 <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
 [![Downloads from the RStudio CRAN
 mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
-[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
+[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](https://joss.theoj.org/papers/10.21105/joss.01193)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -106,8 +106,7 @@ fitfvbm(data,bvec,Mmat)
 #> [1] 5
 ```
 
-Example with real data from
-<https://hal.archives-ouvertes.fr/hal-01927188v1>.
+Example with real data from <https://hal.science/hal-01927188v1>.
 
 ``` r
 # Load bnstruct library & package
@@ -223,7 +222,7 @@ regarding the algorithm is proved. Next, the asymptotic normality
 results pertaining to the use of the functions `fvbmstderr` and
 `fvbmtests` are proved in <http://doi.org/10.1109/TNNLS.2015.2425898>.
 Finally, the `senate` data was introduced and analysed in
-<https://hal.archives-ouvertes.fr/hal-01927188v1>.
+<https://hal.science/hal-01927188v1>.
 
 ## Reference to package
 

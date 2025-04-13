@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 <img src="http://www.r-pkg.org/badges/version-last-release/BoltzMM"></img></a>
 [![Downloads from the RStudio CRAN mirror](http://cranlogs.r-pkg.org/badges/BoltzMM)](https://CRAN.R-project.org/package=BoltzMM)
-[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a)
+[![status](http://joss.theoj.org/papers/23eb189a5e0bdd2b51f668621abcc75a/status.svg)](https://joss.theoj.org/papers/10.21105/joss.01193)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -88,7 +88,7 @@ data <- rfvbm(num,bvec,Mmat)
 fitfvbm(data,bvec,Mmat)
 ```
 
-Example with real data from https://hal.archives-ouvertes.fr/hal-01927188v1.
+Example with real data from https://hal.science/hal-01927188v1.
 ```{r exampleReal, eval = TRUE}
 # Load bnstruct library & package
 library(bnstruct)
@@ -136,7 +136,7 @@ For more examples, see individual help files.
 
 Please refer to the following sources regarding various facets of the FVBM models that are implemented in the package.
 
-The FVBM model and the consistency of their maximum pseudolikelihood estimators (MPLEs) was first considered in http://doi.org/10.1162/neco.2006.18.10.2283. The MM algorithm implemented in the main function `fitfvbm` was introduced in http://doi.org/10.1162/NECO_a_00813. Here various convergence results regarding the algorithm is proved. Next, the asymptotic normality results pertaining to the use of the functions `fvbmstderr` and `fvbmtests` are proved in http://doi.org/10.1109/TNNLS.2015.2425898. Finally, the `senate` data was introduced and analysed in https://hal.archives-ouvertes.fr/hal-01927188v1.
+The FVBM model and the consistency of their maximum pseudolikelihood estimators (MPLEs) was first considered in http://doi.org/10.1162/neco.2006.18.10.2283. The MM algorithm implemented in the main function `fitfvbm` was introduced in http://doi.org/10.1162/NECO_a_00813. Here various convergence results regarding the algorithm is proved. Next, the asymptotic normality results pertaining to the use of the functions `fvbmstderr` and `fvbmtests` are proved in http://doi.org/10.1109/TNNLS.2015.2425898. Finally, the `senate` data was introduced and analysed in https://hal.science/hal-01927188v1.
 
 ## Reference to package
 
